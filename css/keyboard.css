@@ -1,0 +1,43 @@
+.keyboard {
+    --key-width: 36px;
+    --key-height: calc(var(--key-width) * 1.57);
+    position: relative;
+    display: inline-flex;
+    flex-wrap: nowrap;
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+
+.key {
+    position: relative;
+    vertical-align: top;
+    width: calc(var(--key-width) * 1.4);
+    height: var(--key-height);
+    border-left: calc(var(--key-width) * .03) solid #fff;
+}
+    .key:first-child {
+        border-left: 0;
+    }
+
+    .key:last-child,
+    .key:first-child {
+        width: calc(var(--key-width) * .4);
+    }
+
+    .key_black {
+        width: calc(var(--key-width) * .53);
+        height: calc(var(--key-height) * .67);
+        margin: 0 calc(var(--key-width) * -.26);
+        border: 0;
+        background: #fff;
+    }
+
+    .key_narrow {
+        width: var(--key-width);
+    }
+
+    .key_active {
+        padding-top: 2px;
+        z-index: 0;
+    }

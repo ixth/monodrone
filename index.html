@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <title>monotron</title>
+    <link rel="stylesheet" href="css/style.css"/>
+</head>
+<body>
+    <div class="workspace">
+        <form class="device">
+            <fieldset style="display:none">
+                <label>
+                    <input type="range" min="0" max="1" step="0.01" value="0.5" name="volume"/>
+                    Volume
+                </label>
+                <button type="button" id="demo">Demo</button>
+            </fieldset>
+
+            <div class="device__blocks">
+                <h1 class="device__logo">
+                    <span class="device__manufacturer">ixth</span><br/>
+                    <span class="device__name">monodrone</span>
+                    <span class="device__model">yay!</span>
+                </h1>
+                <fieldset class="switch">
+                    <label class="switch__position">
+                        <input class="switch__input" type="radio" name="lfo-form" value="off"/>
+                        <span class="switch__knob"></span>
+                        Standby
+                    </label>
+                    <label class="switch__position">
+                        <input class="switch__input" type="radio" name="lfo-form" value="triangle" checked="checked"/>
+                        <span class="switch__knob"></span>
+                        ⋀
+                    </label>
+                    <label class="switch__position">
+                        <input class="switch__input" type="radio" name="lfo-form" value="square"/>
+                        <span class="switch__knob"></span>
+                        ⎍
+                    </label>
+                </fieldset>
+
+                <fieldset class="block">
+                    <legend class="block__title">LFO</legend>
+                    <div class="block__params">
+                        <div class="block__param">
+                            <label class="param">
+                                <input class="param__input" name="lfo-freq"
+                                       type="range" min="1" max="50" value="2"/>
+                                <span class="param__rotary param__rotary_led"></span>
+                                <span class="param__title">Rate</span>
+                            </label>
+                        </div>
+                        <div class="block__param">
+                            <label class="param">
+                                <input class="param__input" name="lfo-intensity"
+                                       type="range" min="0" max="10" value="5"/>
+                                <span class="param__rotary"></span>
+                                <span class="param__title">Int</span>
+                            </label>
+                        </div>
+                    </div>
+                </fieldset>
+
+                <fieldset class="block">
+                    <legend class="block__title">VCF</legend>
+                    <div class="block__params">
+                        <div class="block__param">
+                            <label class="param">
+                                <input class="param__input" name="vcf-cutoff"
+                                       type="range" min="20" max="20000" value="20000"/>
+                                <span class="param__rotary"></span>
+                                <span class="param__title">Cutoff</span>
+                            </label>
+                        </div>
+                    </div>
+                </fieldset>
+
+                <fieldset class="block">
+                    <legend class="block__title">Delay</legend>
+                    <div class="block__params">
+                        <div class="block__param">
+                            <label class="param">
+                                <input class="param__input" name="delay-time"
+                                       type="range" min="50" max="2000" value="50"/>
+                                <span class="param__rotary"></span>
+                                <span class="param__title">Time</span>
+                            </label>
+                        </div>
+                        <div class="block__param">
+                            <label class="param">
+                                <input class="param__input" name="delay-feedback"
+                                       type="range" min="0" max="1.5" step="0.01" value="0.5"/>
+                                <span class="param__rotary"></span>
+                                <span class="param__title">Feedback</span>
+                            </label>
+                        </div>
+                    </div>
+                </fieldset>
+            </div>
+
+            <div class="device__keyboard">
+                <div class="device__keyboard-content">
+                    <div class="keyboard" id="pitch">
+                        <span class="key"></span>
+                        <span class="key key_black"></span>
+                        <span class="key key_narrow"></span>
+                        <span class="key key_narrow"></span>
+                        <span class="key key_black"></span>
+                        <span class="key"></span>
+                        <span class="key key_black"></span>
+                        <span class="key key_narrow"></span>
+                        <span class="key key_narrow"></span>
+                        <span class="key key_black"></span>
+                        <span class="key"></span>
+                        <span class="key key_black"></span>
+                        <span class="key"></span>
+                        <span class="key key_black"></span>
+                        <span class="key key_narrow"></span>
+                        <span class="key key_narrow"></span>
+                        <span class="key key_black"></span>
+                        <span class="key"></span>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    <script src="js/audio-node.js"></script>
+
+    <script src="js/noise.js"></script>
+    <script src="js/osc.js"></script>
+    <script src="js/delay.js"></script>
+    <script src="js/sequencer.js"></script>
+
+    <script src="js/draggable.js"></script>
+    <script src="js/param-view.js"></script>
+
+    <script src="js/script.js"></script>
+</body>
+</html>

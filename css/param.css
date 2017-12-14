@@ -1,0 +1,32 @@
+.param {
+}
+
+    .param__input {
+        display: none;
+    }
+
+    .param__title {
+        display: block;
+        border-radius: 10px;
+        background: orange;
+        color: var(--bg-color);
+        font: normal 17px/21px 'Pathway Gothic One', sans-serif;
+        text-transform: uppercase;
+        text-align: center;
+    }
+
+    .param__rotary {
+        --rotary-size: 26px;
+        position: relative;
+        display: block;
+        width: var(--rotary-size);
+        height: var(--rotary-size);
+        margin: 4px auto 10px;
+        background: #111 url('handle.svg');
+        border-radius: 50%;
+        box-shadow: 0 0 0 3px #111;
+    }
+
+    .param__rotary_led {
+        background-color: hsl(65, 100%, 70%);
+    }
