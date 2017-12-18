@@ -1,4 +1,5 @@
 import Audio from './Audio';
+import Midi from './Midi';
 import Block from './Block';
 import Mode from './Mode';
 import LfoRate from './LfoRate';
@@ -13,6 +14,7 @@ const Monotron = () => (
     <div className="device">
         <div className="device__blocks">
             <Audio />
+            <Midi />
             <Mode />
             <Block title="LFO">
                 <LfoRate />
