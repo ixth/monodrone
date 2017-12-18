@@ -1,4 +1,4 @@
-class Oscillator {
+export class Oscillator {
     constructor(context, {type, frequency, volume}) {
         const gain = context.createGain();
         const oscillator = context.createOscillator();

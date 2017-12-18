@@ -1,6 +1,4 @@
-(function() {
-    'use strict';
-
+export function addAudioNodeHook() {
     if (typeof AudioNode !== 'undefined') {
         AudioNode.prototype.connect = new Proxy(AudioNode.prototype.connect, {
             apply: function (target, thisArg, [destination, ...rest]) {
@@ -20,4 +18,4 @@
             }
         });
     }
-}());
+}

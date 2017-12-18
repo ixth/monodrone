@@ -9,7 +9,7 @@ const notesMap = {
     'c': 261.6
 };
 
-class SequencerNode {
+export class SequencerNode {
     constructor(context) {
         this.context = context;
         this.bpm = 120;
@@ -48,10 +48,5 @@ class SequencerNode {
             frequency: destination.frequency,
             gain: destination.gain,
         });
-    }
-
-    disconnect(destination) {
-        delete this.frequency;
-        delete this.gain;
     }
 }

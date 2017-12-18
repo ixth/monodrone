@@ -1,60 +1,14 @@
-class Monotron {
-    constructor(context) {
-        const output = context.createGain();
+import { addAudioNodeHook } from './audio-node.js';
+import { Param } from './param-view.js';
+import { SequencerNode } from './sequencer.js';
+import { Monotron } from './monotron.js';
 
-        const lfo = new Oscillator(context, {
-            type: 'triangle',
-            frequency: 6,
-            volume: 5
-        });
-
-        const osc = new Oscillator(context, {
-            type: 'sawtooth',
-            volume: 0
-        });
-
-        const noise = new NoiseNode(context);
-
-        const vcf = context.createBiquadFilter();
-
-        const delay = new Delay(context, {
-            maxDelayTime: 2,
-            delayTime: .05,
-            feedback: 0.5
-        });
-
-        lfo.connect(osc.frequency);
-
-        osc.connect(vcf);
-
-        noise.gain.value = .01;
-        noise.connect(vcf);
-
-        vcf.frequency.value = 20000;
-        vcf.connect(output);
-        vcf.connect(delay);
-
-        delay.connect(output);
-
-        output.gain.value = .5;
-        output.connect(context.destination);
-
-        Object.assign(this, {
-            context,
-            lfo,
-            osc,
-            noise,
-            vcf,
-            delay,
-            output
-        });
-    }
-}
+addAudioNodeHook();
 
 const context = new AudioContext();
 const monotron = new Monotron(context);
 
-var sequencer = new SequencerNode(context);
+const sequencer = new SequencerNode(context);
 sequencer.connect(monotron.osc);
 sequencer.bpm = 91;
 sequencer.melody = [

@@ -1,4 +1,6 @@
-class Param {
+import { draggable } from './draggable.js';
+
+export class Param {
     constructor(element) {
         const input = element.querySelector('.param__input');
         const rotary = element.querySelector('.param__rotary');

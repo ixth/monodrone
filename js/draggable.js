@@ -1,4 +1,4 @@
-function draggable(element) {
+export function draggable(element) {
     let dragOrigin;
     const getDelta = e => {
         const deltaX = e.pageX - dragOrigin.x;

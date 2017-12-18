@@ -1,4 +1,4 @@
-class Delay {
+export class Delay {
     constructor(context, {maxDelayTime, delayTime, feedback}) {
         const gain = context.createGain();
         const delay = context.createDelay(maxDelayTime);

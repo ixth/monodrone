@@ -1,4 +1,4 @@
-class NoiseNode {
+export class NoiseNode {
     constructor(context) {
         this.type = NoiseNode.PinkNoise;
 
