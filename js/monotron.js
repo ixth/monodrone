@@ -1,6 +1,7 @@
 import { NoiseNode } from './noise.js';
 import { Oscillator } from './osc.js';
 import { Delay } from './delay.js';
+import { UserMediaNode } from "./user-media.js";
 
 export class Monotron {
     constructor(context) {
@@ -26,6 +27,9 @@ export class Monotron {
             delayTime: .05,
             feedback: 0.5
         });
+
+        const aux = new UserMediaNode(context);
+        aux.init().then(() => aux.connect(vcf));
 
         lfo.connect(osc.frequency);
 
