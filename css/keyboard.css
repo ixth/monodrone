@@ -16,12 +16,12 @@
     height: var(--key-height);
     border-left: calc(var(--key-width) * .03) solid #fff;
 }
-    .key:first-child {
+    .key:first-of-type {
         border-left: 0;
     }
 
-    .key:last-child,
-    .key:first-child {
+    .key:last-of-type,
+    .key:first-of-type {
         width: calc(var(--key-width) * .4);
     }
 

@@ -15,18 +15,19 @@
         text-align: center;
     }
 
-    .param__rotary {
-        --rotary-size: 26px;
+    .param__knob {
+        --knob-size: 26px;
         position: relative;
         display: block;
-        width: var(--rotary-size);
-        height: var(--rotary-size);
+        width: var(--knob-size);
+        height: var(--knob-size);
         margin: 4px auto 10px;
-        background: #111 url('handle.svg');
         border-radius: 50%;
+        background: #111;
         box-shadow: 0 0 0 3px #111;
     }
 
-    .param__rotary_led {
-        background-color: hsl(65, 100%, 70%);
-    }
+        .param__knob_led {
+            background: hsl(65, 100%, 70%);
+            box-shadow: 0 0 3px 0px hsl(65, 100%, 70%);
+        }

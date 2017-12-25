@@ -16,6 +16,9 @@
                 stroke-width="5"
                 stroke-linecap="square"
                 stroke-dasharray="3 10"/>
+            <path d="M0 50v-35"
+                stroke="black"
+                stroke-width="12"/>
         </g>
 
         <mask id="mask" maskUnits="userSpaceOnUse"
@@ -27,10 +30,6 @@
             <circle r="50"
                 fill="rgba(127,127,127,.5)"
                 stroke-width="10"/>
-            <path
-                d="M0-50v35"
-                stroke="black"
-                stroke-width="12"/>
         </g>
     </defs>
 

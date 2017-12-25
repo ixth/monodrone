@@ -9,9 +9,8 @@ const notesMap = {
     'c': 261.6
 };
 
-export class SequencerNode {
-    constructor(context) {
-        this.context = context;
+export class Sequencer {
+    constructor() {
         this.bpm = 120;
     }
 
@@ -25,16 +24,16 @@ export class SequencerNode {
 
     _loop() {
         const beat = 60 / this.bpm;
-        const startTime = this.context.currentTime;
+        const startTime = this.destination.context.currentTime;
         const note = this._notes.next().value;
-        this.frequency.setValueAtTime(notesMap[note], startTime);
-        this.gain.setValueAtTime(1, startTime);
-        this.gain.setValueAtTime(0, startTime + .9 * beat / 2);
+        this.destination.frequency.setValueAtTime(notesMap[note], startTime);
+        this.destination.gain.setValueAtTime(1, startTime);
+        this.destination.gain.setValueAtTime(0, startTime + .9 * beat / 2);
         this._timeout = setTimeout(this._loop.bind(this, this._notes), 1000 * beat / 2);
     }
 
     start() {
-        this._notes = SequencerNode._getNotes(this.melody);
+        this._notes = Sequencer._getNotes(this.melody);
         this._loop(this._notes);
     }
 
@@ -44,9 +43,6 @@ export class SequencerNode {
     }
 
     connect(destination) {
-        Object.assign(this, {
-            frequency: destination.frequency,
-            gain: destination.gain,
-        });
+        this.destination = destination;
     }
 }
