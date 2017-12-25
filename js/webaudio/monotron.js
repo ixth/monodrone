@@ -39,6 +39,7 @@ export class Monotron {
         vcf.connect(delay);
 
         delay.connect(output);
+        delay.connectFeedback(vcf);
 
         output.gain.value = .5;
         output.connect(context.destination);
