@@ -78,5 +78,23 @@ export function draggable(element) {
 
     element.addEventListener('mousedown', mousedownListener);
 
+
+    element.addEventListener('touchstart', e => {
+        dragOrigin = {
+            x: e.touches[0].pageX,
+            y: e.touches[0].pageY
+        };
+        prevAngle = 0;
+        _interface.emit('dragStart', getDelta(e.touches[0]));
+    });
+
+    element.addEventListener('touchend', e => {
+        _interface.emit('dragEnd');
+    });
+
+    element.addEventListener('touchmove', e => {
+        _interface.emit('drag', getDelta(e.touches[0]));
+    });
+
     return _interface;
 }
