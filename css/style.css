@@ -20,3 +20,14 @@ html, body {
     justify-content: center;
     align-items: center;
 }
+
+@media screen and (orientation: portrait) {
+    .workspace {
+        display: block;
+    }
+
+    .device {
+        transform: scale(2) rotate(-90deg) translate(-100%, 0);
+        transform-origin: 0 0;
+    }
+}
