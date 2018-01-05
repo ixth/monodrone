@@ -2,26 +2,34 @@ import { addAudioNodeHook } from '../webaudio/audio-node.js';
 import { Monotron } from '../webaudio/monotron.js';
 import { store } from '../store.js';
 
-export function Audio() {
-    addAudioNodeHook();
+import React from '../lib/React.js';
 
-    const monotron = new Monotron(new AudioContext());
+const Component = React.Component;
 
-    store.on('change', () => {
-        monotron.lfo.frequency.value = store.lfo.frequency;
-        monotron.lfo.gain.value = store.lfo.intensity;
-        monotron.lfo.type = store.lfo.shape;
+export class Audio extends Component {
+    componentDidMount() {
+        addAudioNodeHook();
 
-        monotron.osc.gain.value = store.osc.gain;
-        monotron.osc.frequency.value = store.osc.frequency;
+        const monotron = new Monotron(new AudioContext());
 
-        monotron.vcf.frequency.value = store.vcf.cutoff;
+        store.on('change', () => {
+            monotron.lfo.frequency.value = store.lfo.frequency;
+            monotron.lfo.gain.value = store.lfo.intensity;
+            monotron.lfo.type = store.lfo.shape;
 
-        monotron.delay.delayTime.value = store.delay.time;
-        monotron.delay.feedback.value = store.delay.feedback;
+            monotron.osc.gain.value = store.osc.gain;
+            monotron.osc.frequency.value = store.osc.frequency;
 
-        monotron.output.gain.value = store.standby ? 0 : store.volume;
-    });
+            monotron.vcf.frequency.value = store.vcf.cutoff;
 
-    return null;
+            monotron.delay.delayTime.value = store.delay.time;
+            monotron.delay.feedback.value = store.delay.feedback;
+
+            monotron.output.gain.value = store.standby ? 0 : store.volume;
+        });
+    }
+
+    render() {
+        return null;
+    }
 }
