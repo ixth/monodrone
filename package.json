@@ -3,5 +3,11 @@
     "flux": "^3.1.3",
     "react": "^16.2.0",
     "react-dom": "^16.2.0"
+  },
+  "devDependencies": {
+    "http-server": "*"
+  },
+  "scripts": {
+    "server": "`npm bin`/http-server -p 8000"
   }
 }
