@@ -1,5 +1,4 @@
-import React from '../../lib/React.js';
-const e = React.createElement;
+import { createElement as e } from '../../lib/React.js';
 
 import { actions } from '../../actions.js';
 import { Ribbon as RibbonControl } from '../controls/ribbon.js';

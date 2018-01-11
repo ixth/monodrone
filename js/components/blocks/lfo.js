@@ -1,11 +1,9 @@
-import React from '../../lib/React.js';
+import { createElement as e } from '../../lib/React.js';
 
 import { actions } from '../../actions.js';
 
 import { Block, Param } from './block.js';
 import { KnobComponent } from '../controls/knob.js';
-
-const e = React.createElement;
 
 export function Lfo(props) {
     return e(Block, { title: 'LFO' }, [

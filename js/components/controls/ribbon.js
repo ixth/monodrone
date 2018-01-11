@@ -1,8 +1,5 @@
-import React from '../../lib/React.js';
+import { Component, Fragment, createElement as e } from '../../lib/React.js';
 import { draggable } from './draggable.js';
-
-const Component = React.Component;
-const e = React.createElement;
 
 export class Ribbon extends Component {
     constructor(props) {
@@ -51,7 +48,7 @@ export class Ribbon extends Component {
 }
 
 function Keys() {
-    return e(React.Fragment, null,
+    return e(Fragment, null,
         e('span', { className: 'key' }),
         e('span', { className: 'key key_black' }),
         e('span', { className: 'key key_narrow' }),

@@ -1,5 +1,4 @@
-import React from '../../lib/React.js';
-const e = React.createElement;
+import { createElement as e } from '../../lib/React.js';
 
 export function Block(props) {
     return e('fieldset', { className: 'block' },
