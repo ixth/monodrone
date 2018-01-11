@@ -1,5 +1,4 @@
-import React from '../../lib/React.js';
-const e = React.createElement;
+import { createElement as e } from '../../lib/React.js';
 
 import { Block, Param } from './block.js';
 import { KnobComponent } from '../controls/knob.js';

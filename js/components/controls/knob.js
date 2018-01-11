@@ -1,9 +1,5 @@
 import { draggable } from './draggable.js';
-import React from '../../lib/React.js';
-
-const Component = React.Component;
-const e = React.createElement;
-
+import { Component, createElement as e } from '../../lib/React.js';
 
 export function KnobComponent({ min, max, value, onChange }) {
     return e(Knob, {

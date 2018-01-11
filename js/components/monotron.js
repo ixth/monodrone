@@ -7,10 +7,7 @@ import { Ribbon } from './blocks/ribbon.js';
 
 import { store } from '../store.js';
 
-import React from '../lib/React.js';
-
-const e = React.createElement;
-const Component = React.Component;
+import { Component, createElement as e } from '../lib/React.js';
 
 export class Monotron extends Component {
     constructor(props) {

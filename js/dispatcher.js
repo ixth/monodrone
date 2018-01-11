@@ -1,3 +1,3 @@
-import { Dispatcher } from './lib/Flux.js';
+import { Dispatcher } from './lib/flux.js';
 
 export const dispatcher = new Dispatcher();
