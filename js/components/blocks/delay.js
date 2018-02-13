@@ -3,7 +3,7 @@ import { createElement as e } from 'react';
 import { Block, Param } from './block.js';
 import { KnobComponent } from '../controls/knob.js';
 
-import { actions } from '../../actions.js';
+import { setDelayTime, setDelayFeedback } from '../../actions.js';
 
 export function Delay(props) {
     return e(Block, { title: 'Delay' }, [
@@ -12,7 +12,7 @@ export function Delay(props) {
                 min: props.time.min,
                 max: props.time.max,
                 value: props.time.value,
-                onChange: e => actions.setDelayTime(e.value)
+                onChange: e => setDelayTime(e.value)
             })
         ),
         e(Param, { title: 'Feedback', key: 'feedback' },
@@ -20,7 +20,7 @@ export function Delay(props) {
                 min: props.feedback.min,
                 max: props.feedback.max,
                 value: props.feedback.value,
-                onChange: e => actions.setDelayFeedback(e.value)
+                onChange: e => setDelayFeedback(e.value)
             })
         )
     ]);
