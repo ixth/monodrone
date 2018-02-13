@@ -1,5 +1,5 @@
-import { createElement as e } from './lib/React.js';
-import { render } from './lib/react-dom.js';
+import { createElement as e } from 'react';
+import ReactDOM from 'react-dom';
 import { Monotron } from './components/monotron.js';
 
-render(e(Monotron), document.querySelector('.workspace'));
+ReactDOM.render(e(Monotron), document.querySelector('.workspace'));

@@ -2,7 +2,7 @@ import { addAudioNodeHook } from '../webaudio/audio-node.js';
 import { Monotron } from '../webaudio/monotron.js';
 import { store } from '../store.js';
 
-import { Component } from '../lib/React.js';
+import { Component } from 'react';
 
 export class Audio extends Component {
     componentDidMount() {
