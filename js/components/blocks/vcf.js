@@ -1,4 +1,4 @@
-import { createElement as e } from '../../lib/React.js';
+import { createElement as e } from 'react';
 
 import { Block, Param } from './block.js';
 import { KnobComponent } from '../controls/knob.js';

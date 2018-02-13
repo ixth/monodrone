@@ -1,4 +1,4 @@
-import { createElement as e } from '../../lib/React.js';
+import { createElement as e } from 'react';
 
 import { actions } from '../../actions.js';
 

@@ -1,4 +1,4 @@
-import { Component, Fragment, createElement as e } from '../../lib/React.js';
+import { Component, Fragment, createElement as e } from 'react';
 import { draggable } from './draggable.js';
 
 export class Ribbon extends Component {
