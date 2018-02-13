@@ -1,6 +1,6 @@
 import { createElement as e } from 'react';
 
-import { actions } from '../../actions.js';
+import { setLfoFrequency, setLfoIntensity } from '../../actions.js';
 
 import { Block, Param } from './block.js';
 import { KnobComponent } from '../controls/knob.js';
@@ -12,7 +12,7 @@ export function Lfo(props) {
                 min: props.frequency.min,
                 max: props.frequency.max,
                 value: props.frequency.value,
-                onChange: e => actions.setLfoFrequency(e.value)
+                onChange: e => setLfoFrequency(e.value)
             })
         ),
         e(Param, { title: 'Int', key: 'int' },
@@ -20,7 +20,7 @@ export function Lfo(props) {
                 min: props.intensity.min,
                 max: props.intensity.max,
                 value: props.intensity.value,
-                onChange: e => actions.setLfoIntensity(e.value)
+                onChange: e => setLfoIntensity(e.value)
             })
         )
     ]);

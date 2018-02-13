@@ -3,7 +3,7 @@ import { createElement as e } from 'react';
 import { Block, Param } from './block.js';
 import { KnobComponent } from '../controls/knob.js';
 
-import { actions } from '../../actions.js';
+import { setVcfCutoff } from '../../actions.js';
 
 export function Vcf(props) {
     return e(Block, { title: 'VCF' }, [
@@ -12,7 +12,7 @@ export function Vcf(props) {
                 min: props.cutoff.min,
                 max: props.cutoff.max,
                 value: props.cutoff.value,
-                onChange: e => actions.setVcfCutoff(e.value)
+                onChange: e => setVcfCutoff(e.value)
             })
         )
     ]);

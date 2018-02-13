@@ -1,23 +1,23 @@
 import { createElement as e } from 'react';
 
-import { actions } from '../../actions.js';
+import { turnOff, setLfoShape } from '../../actions.js';
 
 export function Mode(props) {
     return e('fieldset', { className: 'switch' }, [
         {
             label: 'Standby',
             value: 'standby',
-            onChange: () => actions.turnOff(),
+            onChange: () => turnOff(),
         },
         {
             label: '⋀',
             value: 'sawtooth',
-            onChange: () => actions.setLfoShape('sawtooth'),
+            onChange: () => setLfoShape('sawtooth'),
         },
         {
             label: '⎍',
             value: 'square',
-            onChange: () => actions.setLfoShape('square'),
+            onChange: () => setLfoShape('square'),
         }
     ].map(position => e(Position, {
         key: position.value,
