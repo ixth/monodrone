@@ -1,6 +1,6 @@
-import { NoiseNode } from './noise.js';
-import { Oscillator } from './osc.js';
-import { Delay } from './delay.js';
+import { NoiseNode } from './noise';
+import { Oscillator } from './osc';
+import { Delay } from './delay';
 
 export class Monotron {
     constructor(context) {

@@ -1,5 +1,5 @@
-import { dispatcher } from './dispatcher.js';
-import * as constants from './constants.js';
+import { dispatcher } from './dispatcher';
+import * as constants from './constants';
 
 const makeAction = (type, value) => ({ type, value });
 const makeBoundAction = type => value => dispatcher.dispatch(makeAction(type, value));

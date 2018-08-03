@@ -1,6 +1,6 @@
-import { addAudioNodeHook } from '../webaudio/audio-node.js';
-import { Monotron } from '../webaudio/monotron.js';
-import { store } from '../store.js';
+import { addAudioNodeHook } from '../webaudio/audio-node';
+import { Monotron } from '../webaudio/monotron';
+import { store } from '../store';
 
 import { Component } from 'react';
 
