@@ -3,6 +3,4 @@
 set -e
 
 yarn && yarn build
-git checkout gh-pages
-git add -f build/* css/* index.html
-git commit -m 'Up gh-pages'
+(cd dist && git commit -am 'Up gh-pages')
