@@ -1,0 +1,56 @@
+.switch {
+    position: relative;
+    border: 0;
+    margin: auto;
+    padding: 10px 45px 10px 10px;
+}
+
+    .switch::after,
+    .switch::before {
+        content: '';
+        position: absolute;
+    }
+
+    .switch::before {
+        top: 0;
+        left: 14px;
+        bottom: 0;
+        border: 2px solid orange;
+        border-radius: 2px;
+    }
+
+    .switch::after {
+        top: 10px;
+        left: 10px;
+        bottom: 10px;
+        width: 12px;
+        padding: 3px;
+        margin: -3px;
+        background: #000;
+    }
+
+    .switch__position {
+        display: block;
+        text-transform: uppercase;
+        font-size: 12px;
+    }
+
+    .switch__input {
+        display: none;
+    }
+
+    .switch__knob {
+        position: relative;
+        display: inline-block;
+        margin-right: 5px;
+        padding: 6px;
+        z-index: 1;
+    }
+
+    .switch__input:checked + .switch__knob {
+        background-image: repeating-linear-gradient(to bottom,
+            transparent,
+            transparent 1.5px,
+            rgba(255, 255, 255, .3) 1.5px,
+            rgba(255, 255, 255, .3) 3px);
+    }

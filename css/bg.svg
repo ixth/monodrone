@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 570 220">
+	<path d="M25,220v-185c0,-2.5 2.5,-5 5,-5h230c0.5,0.5 1.5,0.25 2,1l77,87c0.5,0.5 1.5,1 2,1h205c2.5,0 5,2.5 5,5v101"
+		  fill="none" stroke="#555" stroke-width="2"/>
+	<path d="M0,0l-11.7 15
+			 M20,0l-21 27
+			 M40,0l-30 39
+			 M60,0l-40 51
+			 M80,0l-50 63
+			 M100,0l-58 75
+
+			 M120,0l-68 87
+			 M140,0l-68 87
+			 M160,0l-68 87
+			 M180,0l-68 87
+			 M200,0l-68 87
+			 M220,0l-68 87
+			 M240,0l-68 87
+
+			 M250,12l-58 75
+			 M250,36l-40 51
+			 M250,60l-21 27
+			 "
+		  fill="none"
+		  stroke="#000"
+		  stroke-width="8"
+		  stroke-linecap="round"
+		  transform="translate(290 20) scale(1.025)"/>
+</svg>

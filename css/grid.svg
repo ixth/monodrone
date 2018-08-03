@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-80 -80 160 160">
+    <defs>
+        <mask id="mask" maskUnits="userSpaceOnUse"
+              x="-50%" y="-50%" width="100%" height="100%">
+            <circle cx="0" cy="0" r="100" fill="#fff"/>
+            <circle cx="0" cy="0" r="22" fill="#000"/>
+        </mask>
+
+        <g id="grid"
+           mask="url(#mask)"
+           style="fill:none;stroke:#d6c948;stroke-width:2px;">
+            <g id="sector">
+                <path d="M-53,53l53,-53"/>
+                <path d="M-53,53l53,-53" transform="rotate(30)"/>
+            </g>
+            <use href="#sector" transform="rotate(60)"/>
+            <use href="#sector" transform="rotate(120)"/>
+            <use href="#sector" transform="rotate(180)"/>
+            <use href="#sector" transform="rotate(240)"/>
+
+            <circle cx="0" cy="0" r="37"/>
+            <circle cx="0" cy="0" r="56"/>
+            <circle cx="0" cy="0" r="75"/>
+        </g>
+    </defs>
+
+    <use href="#grid" transform="scale(.7)"/>
+</svg>

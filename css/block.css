@@ -1,0 +1,32 @@
+.block {
+    --param-width: 66px;
+    --param-gap: 17px;
+    --bevel-width: 3px;
+    display: inline-block;
+    margin: 0 var(--param-gap) 0 0;
+    padding: 0;
+    border: 0 solid orange;
+    border-top-width: var(--bevel-width);
+    border-radius: calc(var(--bevel-width) / 2);
+}
+
+    .block__title {
+        padding: 0 3px 0 1px;
+        text-align: center;
+        text-transform: uppercase;
+        font: normal 14px 'Pathway Gothic One', sans-serif;
+    }
+
+    .block__params {
+        display: flex;
+        flex-wrap: nowrap;
+    }
+
+    .block__param {
+        min-width: var(--param-width);
+        margin-right: var(--param-gap);
+    }
+
+    .block__param:last-child {
+        margin-right: 0;
+    }
