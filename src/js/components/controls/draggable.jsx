@@ -1,15 +1,15 @@
-import { emitter } from '../../lib/events.js';
+import { emitter } from '../../lib/events';
 
 const basis = [1, 0];
 
-function getAngle(a, b) {
+const getAngle = (a, b) => {
     const scalarProduct = (a[0] * b[0] + a[1] * b[1]);
     const length = Math.sqrt(a[0] * a[0] + a[1] * a[1]) * Math.sqrt(b[0] * b[0] + b[1] * b[1]);
     const angle = Math.acos(scalarProduct / length) / (2 * Math.PI);
     return b[1] < 0 ? -angle : angle;
-}
+};
 
-export function draggable(element) {
+export const draggable = (element) => {
     const getDelta = e => {
         const { clientX, clientY } = e;
 
@@ -79,4 +79,4 @@ export function draggable(element) {
     element.addEventListener('mousedown', mousedownListener);
 
     return _interface;
-}
+};

@@ -1,6 +1,6 @@
-import { dispatcher } from './dispatcher.js';
-import { emitter } from './lib/events.js';
-import * as constants from './constants.js';
+import { dispatcher } from './dispatcher';
+import { emitter } from './lib/events';
+import * as constants from './constants';
 
 export const store = emitter({
     standby: false,

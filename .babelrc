@@ -1,18 +1,15 @@
 {
   "presets": [
-    [
-      "env",
-      {
-        "exclude": [
-          "transform-regenerator",
-          "transform-es2015-arrow-functions"
-        ],
-        "modules": false
-      }
-    ]
+    ["env", {
+      "exclude": [
+        "transform-regenerator",
+        "transform-es2015-arrow-functions"
+      ],
+      "modules": false
+    }],
+    "react"
   ],
   "plugins": [
-    "external-helpers",
     "transform-object-rest-spread"
   ]
 }

@@ -1,14 +1,12 @@
-import { draggable } from './draggable.js';
-import { Component, createElement as e } from 'react';
+import { draggable } from './draggable';
+import { Component } from 'react';
 
-export function KnobComponent({ min, max, value, onChange }) {
-    return e(Knob, {
-        value: value / (max - min),
-        onChange: e => onChange({
-            value: min + e.value * (max - min)
-        })
-    });
-}
+export const KnobComponent = ({ min, max, value, onChange }) => (
+    <Knob
+        value={value / (max - min)}
+        onChange={(e) => { onChange({ value: min + e.value * (max - min) }); }}
+    />
+);
 
 KnobComponent.defaultProps = {
     min: 0,
@@ -56,13 +54,13 @@ class Knob extends Component {
     }
 
     render() {
-        return e('span', {
-            ref: element => this.knob = element,
-            className: 'knob',
-            style: {
-                transform: `rotate(${this._offset + this.state.angle}turn)`
-            }
-        });
+        return <span
+            ref={element => { this.knob = element; }}
+            className='knob'
+            style={({
+                transform: `rotate(${this._offset + this.state.angle}turn)`,
+            })}
+        />;
     }
 }
 
