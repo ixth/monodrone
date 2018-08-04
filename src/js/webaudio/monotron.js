@@ -2,7 +2,7 @@ import { NoiseNode } from './noise';
 import { Oscillator } from './osc';
 import { Delay } from './delay';
 
-export class Monotron {
+export default class Monotron {
     constructor(context) {
         const output = context.createGain();
 

@@ -1,5 +1,3 @@
-import { emitter } from '../../lib/events';
-
 const basis = [1, 0];
 
 const getAngle = (a, b) => {
@@ -9,8 +7,8 @@ const getAngle = (a, b) => {
     return b[1] < 0 ? -angle : angle;
 };
 
-export const draggable = (element) => {
-    const getDelta = e => {
+const draggable = (element, { dragStart, drag, dragEnd }) => {
+    const getDelta = (e) => {
         const { clientX, clientY } = e;
 
         const deltaX = e.pageX - dragOrigin.x;
@@ -47,36 +45,33 @@ export const draggable = (element) => {
     };
 
     const listeners = {
-        'mousemove': e => {
-            _interface.emit('drag', getDelta(e));
+        'mousemove': (e) => {
+            drag(getDelta(e));
         },
         'mouseup': () => {
-            _interface.emit('dragEnd');
+            dragEnd();
             removeMouseHandler();
         }
     };
 
     let dragOrigin;
     let prevAngle;
-    const mousedownListener = e => {
+    const mousedownListener = (e) => {
         addMouseHandler();
         dragOrigin = {
             x: e.pageX,
-            y: e.pageY
+            y: e.pageY,
         };
         prevAngle = 0;
-        _interface.emit('dragStart', getDelta(e));
+        dragStart(getDelta(e));
     };
-
-    const dispose = () => {
-        element.removeEventListener('mousedown', mousedownListener);
-    };
-
-    const _interface = emitter({
-        dispose
-    });
 
     element.addEventListener('mousedown', mousedownListener);
 
-    return _interface;
+    return () => {
+        element.removeEventListener('mousedown', mousedownListener);
+        removeMouseHandler();
+    };
 };
+
+export default draggable;
