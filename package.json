@@ -20,6 +20,7 @@
   },
   "scripts": {
     "start": "webpack-dev-server --mode=development",
-    "build": "webpack --mode=production"
+    "build": "webpack --mode=production",
+    "gh-publish": "cd dist && git commit -am 'Up gh-pages' && git push origin gh-pages"
   }
 }
