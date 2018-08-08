@@ -10,5 +10,11 @@ export const subscribeToAllMidiMessages = (onMessage) =>
     });
 
 let sharedMidiAccess;
-export const getSharedMidiAccess = () =>
-    sharedMidiAccess || (sharedMidiAccess = navigator.requestMIDIAccess());
+export const getSharedMidiAccess = () => {
+    if (!sharedMidiAccess) {
+        sharedMidiAccess = navigator.requestMIDIAccess ?
+            navigator.requestMIDIAccess() :
+            Promise.reject();
+    }
+    return sharedMidiAccess;
+};
