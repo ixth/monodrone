@@ -17,9 +17,9 @@
     .device__blocks {
         position: relative;
         display: flex;
-        padding: 140px 25px 10px;
+        padding: 140px 25px 10px 35px;
         background: url('bg.svg') left bottom no-repeat,
-                    url('grid.svg') 50px 60px no-repeat;
+                    url('grid.svg') 53px 60px no-repeat;
         background-size: 100%, auto;
     }
 
