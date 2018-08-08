@@ -2,14 +2,6 @@ import { Component } from 'react';
 import draggable from './draggable';
 
 class Knob extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            angle: props.value * props.spread,
-        };
-        this._offset = (1 - props.spread) / 2;
-    }
-
     componentDidMount() {
         const dragStart = () => {
             document.body.style.cursor = '-webkit-grabbing';
@@ -27,13 +19,8 @@ class Knob extends Component {
                 return;
             }
 
-            const angle = this.state.angle + e.angleDelta;
-            this.setState({
-                angle: Math.min(Math.max(angle, 0), spread)
-            }, () => {
-                onChange({
-                    value: this.state.angle,
-                })
+            onChange({
+                value: Math.max(0, Math.min(1, this.props.value + e.angleDelta / spread)),
             });
         };
 
@@ -49,11 +36,14 @@ class Knob extends Component {
     }
 
     render() {
+        const { value, spread } = this.props;
+        const offset = (1 - spread) / 2;
+
         return <span
             ref={(element) => this.knob = element }
             className="knob"
             style={({
-                transform: `rotate(${this._offset + this.state.angle}turn)`,
+                transform: `rotate(${offset + value * spread}turn)`,
             })}
         />;
     }
