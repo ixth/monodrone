@@ -15,7 +15,7 @@ class Audio extends Component {
     }
 
     render() {
-        this.monotron.lfo.frequency.value = mapUnitToValue(1, 50, this.props.lfo.frequency);
+        this.monotron.lfo.frequency.value = mapUnitToValue(0.05, 400, this.props.lfo.frequency);
         this.monotron.lfo.gain.value = mapUnitToValue(0, 10, this.props.lfo.intensity);
         this.monotron.lfo.type = this.props.lfo.shape;
 
@@ -24,8 +24,8 @@ class Audio extends Component {
 
         this.monotron.vcf.frequency.value = mapUnitToValue(20, 20000, this.props.vcf.cutoff);
 
-        this.monotron.delay.delayTime.value = mapUnitToValue(.05, 2, this.props.delay.time);
-        this.monotron.delay.feedback.value = mapUnitToValue(0, 1.5, this.props.delay.feedback);
+        this.monotron.delay.delayTime.value = mapUnitToValue(.036, 1.1, this.props.delay.time);
+        this.monotron.delay.feedback.value = mapUnitToValue(0, 1.2, this.props.delay.feedback);
 
         this.monotron.output.gain.value = this.props.power ? this.props.volume : 0;
 
