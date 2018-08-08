@@ -15,7 +15,9 @@ const Position = ({ name, label, value, checked, onChange }) => (
             onChange={onChange}
         />
         <span className="switch__knob"/>
-        {label}
+        <span className="switch__label">
+            {label}
+        </span>
     </label>
 );
 
@@ -31,7 +33,7 @@ const Mode = ({ value, turnOn, turnOff, setLfoShape }) => (
         />
         <Position
             name="mode"
-            label="⋀"
+            label=" ⋀"
             key="sawtooth"
             value="sawtooth"
             checked={value === 'sawtooth'}

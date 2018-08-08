@@ -5,4 +5,5 @@
     height: var(--knob-size);
     background: url('knob.svg');
     border-radius: 50%;
+    cursor: pointer;
 }
