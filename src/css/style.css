@@ -19,4 +19,6 @@ html, body {
     display: flex;
     justify-content: center;
     align-items: center;
+    background: #000 url('space.jpg') center no-repeat;
+    background-size: cover;
 }
