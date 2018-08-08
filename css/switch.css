@@ -1,8 +1,11 @@
 .switch {
+    --switch-height: 11px;
+    --switch-width: 12px;
+    --bevel-size: 2px;
     position: relative;
     border: 0;
     margin: auto;
-    padding: 10px 45px 10px 10px;
+    padding: 10px 45px 10px 0;
 }
 
     .switch::after,
@@ -13,20 +16,23 @@
 
     .switch::before {
         top: 0;
-        left: 14px;
+        left: calc(var(--switch-width) / 2 - var(--bevel-size));
         bottom: 0;
-        border: 2px solid orange;
-        border-radius: 2px;
+        border: var(--bevel-size) solid orange;
+        border-radius: var(--bevel-size);
     }
 
     .switch::after {
+        --padding: 1px;
         top: 10px;
-        left: 10px;
+        left: 0;
         bottom: 10px;
-        width: 12px;
-        padding: 3px;
-        margin: -3px;
+        width: var(--switch-width);
         background: #000;
+        margin: calc(-1 * (var(--bevel-size) + var(--padding)));
+        padding: 0 var(--padding);
+        border: var(--bevel-size) solid;
+        border-color: #000 #111 #111;
     }
 
     .switch__position {
@@ -39,18 +45,24 @@
         display: none;
     }
 
+    .switch__knob,
+    .switch__label {
+        display: inline-block;
+        vertical-align: middle;
+    }
+
     .switch__knob {
         position: relative;
-        display: inline-block;
-        margin-right: 5px;
-        padding: 6px;
+        margin-right: calc(var(--bevel-size) + 5px);
+        padding-bottom: var(--switch-height);
+        padding-right: var(--switch-width);
         z-index: 1;
     }
 
     .switch__input:checked + .switch__knob {
         background-image: repeating-linear-gradient(to bottom,
-            transparent,
-            transparent 1.5px,
-            rgba(255, 255, 255, .3) 1.5px,
-            rgba(255, 255, 255, .3) 3px);
+            rgba(255, 255, 255, .3),
+            rgba(255, 255, 255, .3) 1px,
+            transparent 1px,
+            transparent 2px);
     }

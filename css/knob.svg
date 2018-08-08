@@ -1,7 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="-50 -50 100 100">
     <defs>
         <radialGradient id="gradient" r="1" cx=".5" cy="0" fx=".5" fy="0">
-            <stop offset="0%" stop-color="#444"/>
+            <stop offset="0%" stop-color="#666"/>
             <stop offset="100%" stop-color="#fff"/>
         </radialGradient>
 
@@ -14,7 +14,6 @@
                 fill="none"
                 stroke="#000"
                 stroke-width="5"
-                stroke-linecap="square"
                 stroke-dasharray="3 10"/>
             <path d="M0 50v-35"
                 stroke="black"

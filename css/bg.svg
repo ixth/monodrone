@@ -1,6 +1,8 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 570 220">
+	<path d="M24,220v-186c0,-2.5 2.5,-5 5,-5h232c0.5,0.5 1.5,0.25 2,1l77,87c0.5,0.5 1.5,1 2,1h205c2.5,0 5,2.5 5,5v101"
+		  fill="none" stroke="#111" stroke-width="1"/>
 	<path d="M25,220v-185c0,-2.5 2.5,-5 5,-5h230c0.5,0.5 1.5,0.25 2,1l77,87c0.5,0.5 1.5,1 2,1h205c2.5,0 5,2.5 5,5v101"
-		  fill="none" stroke="#555" stroke-width="2"/>
+		  fill="none" stroke="#444" stroke-width="1"/>
 	<path d="M0,0l-11.7 15
 			 M20,0l-21 27
 			 M40,0l-30 39
