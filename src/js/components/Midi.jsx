@@ -1,4 +1,4 @@
-import { Component } from 'react';
+import { PureComponent } from 'react';
 import { connect } from 'react-redux';
 
 import { subscribeToAllMidiMessages } from '../lib/omni';
@@ -11,7 +11,7 @@ import { setVcfCutoff } from '../reducers/vcf';
 
 const frequencyFromNote = (tone) => 440 * Math.pow(2, (tone - 69) / 12);
 
-class Midi extends Component {
+class Midi extends PureComponent {
     render() {
         return null;
     }
