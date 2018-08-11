@@ -1,9 +1,13 @@
 .knob {
-    --knob-size: 26px;
-    display: block;
-    width: var(--knob-size);
-    height: var(--knob-size);
-    background: url('knob.svg');
-    border-radius: 50%;
-    cursor: pointer;
+    position: relative;
 }
+
+    .knob__handle {
+        --knob-size: 26px;
+        display: block;
+        width: var(--knob-size);
+        height: var(--knob-size);
+        background: url('knob.svg');
+        border-radius: 50%;
+        cursor: pointer;
+    }

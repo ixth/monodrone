@@ -1,14 +1,18 @@
 .keyboard {
-    --key-width: 36px;
-    --key-height: calc(var(--key-width) * 1.57);
     position: relative;
-    display: inline-flex;
-    flex-wrap: nowrap;
-    margin: 0;
-    padding: 0;
-    border: 0;
-    cursor: pointer;
 }
+
+    .keyboard__keys {
+        --key-width: 36px;
+        --key-height: calc(var(--key-width) * 1.57);
+        position: relative;
+        display: inline-flex;
+        flex-wrap: nowrap;
+        margin: 0;
+        padding: 0;
+        border: 0;
+        cursor: pointer;
+    }
 
 .key {
     position: relative;
