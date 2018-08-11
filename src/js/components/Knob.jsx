@@ -1,57 +1,36 @@
-import { Component } from 'react';
-import draggable from './draggable';
+import DraggableAngle from './DraggableAngle';
+import { noop, clamp } from '../lib/utils';
 
-class Knob extends Component {
-    componentDidMount() {
-        const dragStart = () => {
-            document.body.style.cursor = '-webkit-grabbing';
-            document.body.style.userSelect = 'none';
-        };
-
-        const dragEnd = () => {
-            document.body.style.cursor = '';
-            document.body.style.userSelect = '';
-        };
-
-        const { spread, onChange } = this.props;
-        const drag = (e) => {
-            if (isNaN(e.angleDelta)) {
-                return;
-            }
-
-            onChange({
-                value: Math.max(0, Math.min(1, this.props.value + e.angleDelta / spread)),
-            });
-        };
-
-        this.unsubscribe = draggable(this.knob, {
-            dragStart,
-            drag,
-            dragEnd,
-        });
-    }
-
-    componentWillUnmount() {
-        this.unsubscribe();
-    }
-
-    render() {
-        const { value, spread } = this.props;
-        const offset = (1 - spread) / 2;
-
-        return <span
-            ref={(element) => this.knob = element }
-            className="knob"
-            style={({
-                transform: `rotate(${offset + value * spread}turn)`,
-            })}
-        />;
-    }
-}
-
-Knob.defaultProps = {
-    spread: 280 / 360,
-    value: 0
+const dragStart = () => {
+    document.body.style.cursor = '-webkit-grabbing';
 };
+
+const dragEnd = () => {
+    document.body.style.cursor = '';
+};
+
+const Knob = ({ value = 0, spread = 280 / 360, onChange = noop }) => (
+    <span className="knob">
+        <DraggableAngle
+            enableUserSelectHack={true}
+            onStart={dragStart}
+            onStop={dragEnd}
+            onDrag={
+                (e, data) => {
+                    onChange({
+                        value: clamp(0, 1, value + data.deltaAngle / (spread * 2 * Math.PI)),
+                    })
+                }
+            }
+        >
+            <span
+                className="knob__handle"
+                style={({
+                    transform: `rotate(${((1 - spread) / 2)}turn) rotate(${value * spread}turn)`,
+                })}
+            />
+        </DraggableAngle>
+    </span>
+);
 
 export default Knob;
