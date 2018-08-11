@@ -5,7 +5,7 @@ import { subscribeToAllMidiMessages } from '../lib/omni';
 import MIDIMessage from '../lib/midi-message';
 
 import { setDelayTime, setDelayFeedback } from '../reducers/delay';
-import { setLfoFrequency, setLfoIntensity, setLfoShape } from '../reducers/lfo';
+import { setLfoFrequency, setLfoIntensity } from '../reducers/lfo';
 import { setOscGain, setOscFrequency } from '../reducers/osc';
 import { setVcfCutoff } from '../reducers/vcf';
 
@@ -26,7 +26,6 @@ class Midi extends Component {
             setDelayFeedback,
             setLfoFrequency,
             setLfoIntensity,
-            setLfoShape,
             setOscGain,
             setOscFrequency,
             setVcfCutoff,
@@ -75,7 +74,6 @@ export default connect(null, {
     setDelayFeedback,
     setLfoFrequency,
     setLfoIntensity,
-    setLfoShape,
     setOscGain,
     setOscFrequency,
     setVcfCutoff,
