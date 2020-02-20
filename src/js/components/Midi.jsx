@@ -2,7 +2,7 @@ import { PureComponent } from 'react';
 import { connect } from 'react-redux';
 
 import { subscribeToAllMidiMessages } from '../lib/omni';
-import MIDIMessage from '../lib/midi-message';
+import MidiMessage from '../lib/MIDIMessage';
 
 import { setDelayTime, setDelayFeedback } from '../reducers/delay';
 import { setLfoFrequency, setLfoIntensity } from '../reducers/lfo';
@@ -32,7 +32,7 @@ class Midi extends PureComponent {
         } = this.props;
 
         switch (message.type) {
-            case MIDIMessage.NOTE_ON:
+            case MidiMessage.NOTE_ON:
                 if (message.data[1] === 0) {
                     setOscGain(0);
                 } else {
@@ -41,12 +41,12 @@ class Midi extends PureComponent {
                 }
                 break;
 
-            case MIDIMessage.NOTE_OFF:
+            case MidiMessage.NOTE_OFF:
                 setOscGain(0);
                 break;
 
-            case MIDIMessage.CONTROL_CHANGE:
-                if (message.data[0] === MIDIMessage.CONTROL_VOLUME) {
+            case MidiMessage.CONTROL_CHANGE:
+                if (message.data[0] === MidiMessage.CONTROL_VOLUME) {
                     setVolume(message.data[1] / 0x7f);
                 }
                 if (message.data[0] === 0x4a) {
