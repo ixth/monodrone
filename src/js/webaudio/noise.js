@@ -14,12 +14,10 @@ export class NoiseNode {
         const gain = context.createGain();
         processor.connect(gain);
 
-        Object.assign(this, {
-            context,
-            gain: gain.gain,
-            _processor: processor,
-            _gain: gain,
-        });
+        this.context = context;
+        this.gain = gain.gain;
+        this._processor = processor;
+        this._gain = gain;
     }
 
     static *WhiteNoise() {

@@ -44,14 +44,12 @@ export default class Monotron {
         output.gain.value = .5;
         output.connect(context.destination);
 
-        Object.assign(this, {
-            context,
-            lfo,
-            osc,
-            noise,
-            vcf,
-            delay,
-            output
-        });
+        this.context = context;
+        this.lfo = lfo;
+        this.osc = osc;
+        this.noise = noise;
+        this.vcf = vcf;
+        this.delay = delay;
+        this.output = output;
     }
 }
