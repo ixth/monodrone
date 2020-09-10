@@ -1,21 +1,19 @@
 export default () => {
     if (typeof AudioNode !== 'undefined') {
-        AudioNode.prototype.connect = new Proxy(AudioNode.prototype.connect, {
-            apply(target, thisArg, [destination, ...rest]) {
-                if (destination && typeof destination.__connectFrom === 'function') {
-                    return destination.__connectFrom(thisArg, ...rest);
-                }
-                return target.call(thisArg, destination, ...rest);
+        const connect = AudioNode.prototype.connect;
+        AudioNode.prototype.connect = function (destination, ...rest) {
+            if (destination && typeof destination.__connectFrom === 'function') {
+                return destination.__connectFrom(this, ...rest);
             }
-        });
+            return connect.call(this, destination, ...rest);
+        };
 
-        AudioNode.prototype.disconnect = new Proxy(AudioNode.prototype.disconnect, {
-            apply(target, thisArg, [destination, ...rest]) {
-                if (destination && typeof destination.__disconnectFrom === 'function') {
-                    return destination.__disconnectFrom(thisArg, ...rest);
-                }
-                return target.call(thisArg, destination, ...rest);
+        const disconnect = AudioNode.prototype.disconnect;
+        AudioNode.prototype.disconnect = function (destination, ...rest) {
+            if (destination && typeof destination.__disconnectFrom === 'function') {
+                return destination.__disconnectFrom(this, ...rest);
             }
-        });
+            return disconnect.call(this, destination, ...rest);
+        };
     }
-}
+};
