@@ -11,7 +11,15 @@ class Audio extends PureComponent {
     constructor() {
         super();
         addAudioNodeHook();
-        this.monotron = new Monotron(new AudioContext());
+        const audioContext = new AudioContext();
+
+        document.addEventListener('click', function cb() {
+            if (audioContext.state === 'suspended') {
+                audioContext.resume();
+                document.removeEventListener('click', cb);
+            }
+        });
+        this.monotron = new Monotron(audioContext);
     }
 
     render() {
