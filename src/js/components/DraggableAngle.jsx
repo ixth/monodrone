@@ -1,10 +1,9 @@
 import { memo, useCallback } from 'react';
 import { DraggableCore } from 'react-draggable';
-import { getAngle } from 'lib/vectors';
 
 const getAngleData = ({ x, y, lastX, lastY }) => {
-    const angle = getAngle([x, y]);
-    const lastAngle = getAngle([lastX, lastY]);
+    const angle = Math.atan2(y, x);
+    const lastAngle = Math.atan2(lastY, lastX);
     const deltaAngle = angle - lastAngle;
     const absoluteDelta = Math.abs(deltaAngle);
     return {
