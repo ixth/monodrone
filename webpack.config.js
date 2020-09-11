@@ -2,7 +2,7 @@ const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
-const CleanWebpackPlugin = require('clean-webpack-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 module.exports = {
     entry: ['react', 'index'],
@@ -21,9 +21,11 @@ module.exports = {
         ],
     },
     plugins: [
-        new CleanWebpackPlugin(['dist/*'], { watch: true }),
+        new CleanWebpackPlugin(),
         new HtmlWebpackPlugin({ template: 'src/index.html' }),
         new webpack.ProvidePlugin({ 'React.createElement': ['react', 'createElement'] }),
-        new CopyWebpackPlugin([{ from: 'src/css', to: 'css' }]),
+        new CopyWebpackPlugin({
+            patterns: [{ from: 'src/css', to: 'css' }],
+        }),
     ],
 };
