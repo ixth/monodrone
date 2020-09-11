@@ -1,7 +1,7 @@
+import { memo } from 'react';
 import { Children } from 'react';
 
-
-const Block = ({ title, children }) => (
+const Block = memo(({ title, children }) => (
     <fieldset className="block">
         <legend className="block__title">
             {title}
@@ -14,6 +14,6 @@ const Block = ({ title, children }) => (
             )}
         </div>
     </fieldset>
-);
+));
 
 export default Block;

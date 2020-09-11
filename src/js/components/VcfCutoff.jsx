@@ -1,24 +1,20 @@
-import { connect } from 'react-redux';
+import { useCallback } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { setVcfCutoff } from 'reducers/vcf';
 
 import Param from 'components/Param';
 import Knob from 'components/Knob';
 
+const VcfCutoff = () => {
+    const dispatch = useDispatch();
+    const handleChange = useCallback(({ value }) => { dispatch(setVcfCutoff(value)); }, [dispatch]);
+    const cutoff = useSelector((state) => state.vcf.cutoff);
 
-const VcfCutoff = ({ cutoff, setVcfCutoff }) => (
-    <Param title="Cutoff" key="cutoff">
-        <Knob
-            value={cutoff}
-            onChange={ (e) => setVcfCutoff(e.value) }
-        />
-    </Param>
-);
+    return (
+        <Param title="Cutoff" key="cutoff">
+            <Knob value={cutoff} onChange={handleChange} />
+        </Param>
+    );
+};
 
-export default connect(
-    (state) => ({
-        cutoff: state.vcf.cutoff,
-    }),
-    {
-        setVcfCutoff,
-    }
-)(VcfCutoff);
+export default VcfCutoff;

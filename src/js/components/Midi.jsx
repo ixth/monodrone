@@ -1,5 +1,5 @@
-import { PureComponent } from 'react';
-import { connect } from 'react-redux';
+import { useCallback, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 
 import { subscribeToAllMidiMessages } from 'lib/omni';
 import MIDIMessage from 'lib/midi-message';
@@ -11,70 +11,60 @@ import { setVcfCutoff } from 'reducers/vcf';
 
 const frequencyFromNote = (tone) => 440 * Math.pow(2, (tone - 69) / 12);
 
-class Midi extends PureComponent {
-    render() {
-        return null;
-    }
+const Midi = () => {
+    const dispatch = useDispatch();
 
-    componentDidMount() {
-        subscribeToAllMidiMessages(this._onMidiMessage.bind(this));
-    }
-
-    _onMidiMessage(message) {
-        const {
-            setDelayTime,
-            setDelayFeedback,
-            setLfoFrequency,
-            setLfoIntensity,
-            setOscGain,
-            setOscFrequency,
-            setVcfCutoff,
-        } = this.props;
-
-        switch (message.type) {
+    const handleMidiMessage = useCallback(
+        ({ data, type }) => {
+            switch (type) {
             case MIDIMessage.NOTE_ON:
-                if (message.data[1] === 0) {
-                    setOscGain(0);
+                if (data[1] === 0) {
+                    dispatch(setOscGain(0));
                 } else {
-                    setOscFrequency(frequencyFromNote(message.data[0]));
-                    setOscGain(message.data[1] / 0x7f);
+                    dispatch(setOscFrequency(frequencyFromNote(data[0])));
+                    dispatch(setOscGain(data[1] / 0x7f));
                 }
                 break;
 
             case MIDIMessage.NOTE_OFF:
-                setOscGain(0);
+                dispatch(setOscGain(0));
                 break;
 
             case MIDIMessage.CONTROL_CHANGE:
-                if (message.data[0] === MIDIMessage.CONTROL_VOLUME) {
-                    setVolume(message.data[1] / 0x7f);
+                if (data[0] === MIDIMessage.CONTROL_VOLUME) {
+                    dispatch(setVolume(data[1] / 0x7f));
                 }
-                if (message.data[0] === 0x4a) {
-                    setLfoFrequency(message.data[1] / 0x7f);
+
+                if (data[0] === 0x4a) {
+                    dispatch(setLfoFrequency(data[1] / 0x7f));
                 }
-                if (message.data[0] === 0x47) {
-                    setLfoIntensity(message.data[1] / 0x7f);
+
+                if (data[0] === 0x47) {
+                    dispatch(setLfoIntensity(data[1] / 0x7f));
                 }
-                if (message.data[0] === 0x5b) {
-                    setDelayTime(message.data[1] / 0x7f);
+
+                if (data[0] === 0x5b) {
+                    dispatch(setDelayTime(data[1] / 0x7f));
                 }
-                if (message.data[0] === 0x5d) {
-                    setDelayFeedback(message.data[1] / 0x7f);
+
+                if (data[0] === 0x5d) {
+                    dispatch(setDelayFeedback(data[1] / 0x7f));
                 }
-                if (message.data[0] === 0x54) {
-                    setVcfCutoff(message.data[1] / 0x7f);
+
+                if (data[0] === 0x54) {
+                    dispatch(setVcfCutoff(data[1] / 0x7f));
                 }
                 break;
         }
-    }
-}
+        },
+        [dispatch]
+    );
 
-export default connect(null, {
-    setDelayTime,
-    setDelayFeedback,
-    setLfoFrequency,
-    setLfoIntensity,
-    setOscGain,
-    setOscFrequency,
-    setVcfCutoff,
-})(Midi);
+    useEffect(() => {
+        subscribeToAllMidiMessages(handleMidiMessage);
+    }, []);
+
+    return null;
+};
+
+export default Midi;

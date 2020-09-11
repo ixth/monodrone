@@ -1,44 +1,39 @@
-import { PureComponent } from 'react';
+import { memo, useMemo } from 'react';
 import { connect } from 'react-redux';
 
 import addAudioNodeHook from 'webaudio/audio-node-hook';
 import Monotron from 'webaudio/monotron';
 
+addAudioNodeHook();
+
+const audioContext = new AudioContext();
+document.addEventListener('click', function cb() {
+    if (audioContext.state === 'suspended') {
+        audioContext.resume();
+        document.removeEventListener('click', cb);
+    }
+});
 
 const mapUnitToValue = (min, max, value) => min + value * (max - min);
 
-class Audio extends PureComponent {
-    constructor() {
-        super();
-        addAudioNodeHook();
-        const audioContext = new AudioContext();
+const Audio = memo(({ delay, lfo, osc, power, vcf, volume }) => {
+    const monotron = useMemo(() => new Monotron(audioContext), []);
 
-        document.addEventListener('click', function cb() {
-            if (audioContext.state === 'suspended') {
-                audioContext.resume();
-                document.removeEventListener('click', cb);
-            }
-        });
-        this.monotron = new Monotron(audioContext);
-    }
+    monotron.lfo.frequency.value = mapUnitToValue(1, 50, lfo.frequency);
+    monotron.lfo.gain.value = mapUnitToValue(0, 10, lfo.intensity);
+    monotron.lfo.type = lfo.shape;
 
-    render() {
-        this.monotron.lfo.frequency.value = mapUnitToValue(1, 50, this.props.lfo.frequency);
-        this.monotron.lfo.gain.value = mapUnitToValue(0, 10, this.props.lfo.intensity);
-        this.monotron.lfo.type = this.props.lfo.shape;
+    monotron.osc.gain.value = osc.gain;
+    monotron.osc.frequency.value = osc.frequency;
 
-        this.monotron.osc.gain.value = this.props.osc.gain;
-        this.monotron.osc.frequency.value = this.props.osc.frequency;
+    monotron.vcf.frequency.value = mapUnitToValue(20, 20000, vcf.cutoff);
 
-        this.monotron.vcf.frequency.value = mapUnitToValue(20, 20000, this.props.vcf.cutoff);
+    monotron.delay.delayTime.value = mapUnitToValue(.05, 2, delay.time);
+    monotron.delay.feedback.value = mapUnitToValue(0, 1.5, delay.feedback);
 
-        this.monotron.delay.delayTime.value = mapUnitToValue(.05, 2, this.props.delay.time);
-        this.monotron.delay.feedback.value = mapUnitToValue(0, 1.5, this.props.delay.feedback);
+    monotron.output.gain.value = power ? volume : 0;
 
-        this.monotron.output.gain.value = this.props.power ? this.props.volume : 0;
-
-        return null;
-    }
-}
+    return null;
+});
 
 export default connect((state) => ({ ...state }))(Audio);
