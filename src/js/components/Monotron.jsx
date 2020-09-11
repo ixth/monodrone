@@ -1,39 +1,70 @@
+import { useCallback } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+
 import Audio from 'components/Audio';
 import Midi from 'components/Midi';
 import Block from 'components/Block';
 import Mode from 'components/Mode';
-import LfoRate from 'components/LfoRate';
-import LfoInt from 'components/LfoInt';
-import VcfCutoff from 'components/VcfCutoff';
-import DelayTime from 'components/DelayTime';
-import DelayFeedback from 'components/DelayFeedback';
 import Ribbon from 'components/Ribbon';
 
+import Param from 'components/Param';
+import Knob from 'components/Knob';
 
-const Monotron = () => (
-    <div className="device">
-        <div className="device__blocks">
-            <Audio />
-            <Midi />
-            <Mode />
-            <Block title="LFO">
-                <LfoRate />
-                <LfoInt />
-            </Block>
-            <Block title="VCF">
-                <VcfCutoff />
-            </Block>
-            <Block title="Delay">
-                <DelayTime />
-                <DelayFeedback />
-            </Block>
-        </div>
-        <div className="device__keyboard">
-            <div className="device__keyboard-content">
-                <Ribbon />
+import { setLfoFrequency, setLfoIntensity } from 'reducers/lfo';
+import { setVcfCutoff } from 'reducers/vcf';
+import { setDelayFeedback, setDelayTime } from 'reducers/delay';
+
+
+const Monotron = () => {
+    const dispatch = useDispatch();
+
+    const frequency = useSelector(({ lfo }) => lfo.frequency);
+    const intensity = useSelector(({ lfo }) => lfo.intensity);
+    const cutoff = useSelector(({ vcf }) => vcf.cutoff);
+    const delayTime = useSelector(({ delay }) => delay.time);
+    const feedback = useSelector(({ delay }) => delay.feedback);
+
+    const handleFrequencyChange = useCallback(({ value }) => { dispatch(setLfoFrequency(value)); }, [dispatch]);
+    const handleIntensityChange = useCallback(({ value }) => { dispatch(setLfoIntensity(value)); }, [dispatch]);
+    const handleCutoffChange = useCallback(({ value }) => { dispatch(setVcfCutoff(value)); }, [dispatch]);
+    const handleDelayTimeChange = useCallback(({ value }) => { dispatch(setDelayTime(value)); }, [dispatch]);
+    const handleFeedbackChange = useCallback(({ value }) => dispatch(setDelayFeedback(value)), [dispatch]);
+
+    return (
+        <div className="device">
+            <div className="device__blocks">
+                <Audio/>
+                <Midi/>
+                <Mode/>
+                <Block title="LFO">
+                    <Param title="Rate" led={true}>
+                        <Knob value={frequency} onChange={handleFrequencyChange}/>
+                    </Param>
+                    <Param title="Int">
+                        <Knob value={intensity} onChange={handleIntensityChange} />
+                    </Param>
+                </Block>
+                <Block title="VCF">
+                    <Param title="Cutoff">
+                        <Knob value={cutoff} onChange={handleCutoffChange} />
+                    </Param>
+                </Block>
+                <Block title="Delay">
+                    <Param title="Time">
+                        <Knob value={delayTime} onChange={handleDelayTimeChange} />
+                    </Param>
+                    <Param title="Feedback">
+                        <Knob value={feedback} onChange={handleFeedbackChange} />
+                    </Param>
+                </Block>
+            </div>
+            <div className="device__keyboard">
+                <div className="device__keyboard-content">
+                    <Ribbon/>
+                </div>
             </div>
         </div>
-    </div>
-);
+    );
+};
 
 export default Monotron;
