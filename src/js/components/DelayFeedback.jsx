@@ -1,24 +1,20 @@
-import { connect } from 'react-redux';
+import { useCallback } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { setDelayFeedback } from 'reducers/delay';
 
 import Param from 'components/Param';
 import Knob from 'components/Knob';
 
+const DelayFeedback = () => {
+    const dispatch = useDispatch();
+    const handleChange = useCallback(({ value }) => dispatch(setDelayFeedback(value)), [dispatch]);
+    const feedback = useSelector((state) => state.delay.feedback);
 
-const DelayFeedback = ({ feedback, setDelayFeedback }) => (
-    <Param title="Feedback" key="feedback">
-        <Knob
-            value={feedback}
-            onChange={ (e) => setDelayFeedback(e.value) }
-        />
-    </Param>
-);
+    return (
+        <Param title="Feedback" key="feedback">
+            <Knob value={feedback} onChange={handleChange} />
+        </Param>
+    );
+};
 
-export default connect(
-    (state) => ({
-        feedback: state.delay.feedback,
-    }),
-    {
-        setDelayFeedback,
-    }
-)(DelayFeedback);
+export default DelayFeedback;
