@@ -1,4 +1,4 @@
-import createReducer from '../create-reducer';
+import createReducer from 'create-reducer';
 
 export const VCF_SET_CUTOFF = 'VCF_SET_CUTOFF';
 

@@ -1,4 +1,4 @@
-import createReducer from '../create-reducer';
+import createReducer from 'create-reducer';
 
 export const OSC_SET_GAIN = 'OSC_SET_GAIN';
 export const OSC_SET_FREQUENCY = 'OSC_SET_FREQUENCY';

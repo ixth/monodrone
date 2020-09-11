@@ -1,8 +1,8 @@
 import { connect } from 'react-redux';
-import { setDelayTime } from '../reducers/delay';
+import { setDelayTime } from 'reducers/delay';
 
-import Param from './Param';
-import Knob from './Knob';
+import Param from 'components/Param';
+import Knob from 'components/Knob';
 
 
 const DelayTime = ({ time, setDelayTime }) => (

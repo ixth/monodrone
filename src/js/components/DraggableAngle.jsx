@@ -1,5 +1,5 @@
 import { DraggableCore } from 'react-draggable';
-import { getAngle } from '../lib/vectors';
+import { getAngle } from 'lib/vectors';
 
 const getAngleData = ({ x, y, lastX, lastY }) => {
     const angle = getAngle([x, y]);

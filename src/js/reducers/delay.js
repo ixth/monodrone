@@ -1,4 +1,4 @@
-import createReducer from '../create-reducer';
+import createReducer from 'create-reducer';
 
 export const DELAY_SET_TIME = 'DELAY_SET_TIME';
 export const DELAY_SET_FEEDBACK = 'DELAY_SET_FEEDBACK';

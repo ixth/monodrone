@@ -1,5 +1,5 @@
-import DraggableAngle from './DraggableAngle';
-import { noop, clamp } from '../lib/utils';
+import DraggableAngle from 'components/DraggableAngle';
+import { noop, clamp } from 'lib/utils';
 
 const dragStart = () => {
     document.body.style.cursor = '-webkit-grabbing';

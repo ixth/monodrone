@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
-import { setOscGain, setOscFrequency } from '../reducers/osc';
-import { clamp } from '../lib/utils';
+import { setOscGain, setOscFrequency } from 'reducers/osc';
+import { clamp } from 'lib/utils';
 
 import { DraggableCore } from 'react-draggable';
 

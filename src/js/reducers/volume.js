@@ -1,4 +1,4 @@
-import createReducer from '../create-reducer';
+import createReducer from 'create-reducer';
 
 export const VOLUME_SET_VALUE = 'VOLUME_SET_VALUE';
 

@@ -1,4 +1,4 @@
-import MIDIMessage from './midi-message';
+import MIDIMessage from 'lib/midi-message';
 
 export const subscribeToAllMidiMessages = (onMessage) =>
     getSharedMidiAccess().then((access) => {

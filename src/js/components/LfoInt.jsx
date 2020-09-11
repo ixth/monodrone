@@ -1,8 +1,8 @@
 import { connect } from 'react-redux';
-import { setLfoIntensity } from '../reducers/lfo';
+import { setLfoIntensity } from 'reducers/lfo';
 
-import Param from './Param';
-import Knob from './Knob';
+import Param from 'components/Param';
+import Knob from 'components/Knob';
 
 
 const LfoInt = ({ intensity, setLfoIntensity }) => (

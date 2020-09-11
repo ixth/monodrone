@@ -1,4 +1,4 @@
-import createReducer from '../create-reducer';
+import createReducer from 'create-reducer';
 
 export const POWER_ON = 'POWER_ON';
 export const POWER_OFF = 'POWER_OFF';

@@ -1,8 +1,8 @@
 import { connect } from 'react-redux';
-import { setVcfCutoff } from '../reducers/vcf';
+import { setVcfCutoff } from 'reducers/vcf';
 
-import Param from './Param';
-import Knob from './Knob';
+import Param from 'components/Param';
+import Knob from 'components/Knob';
 
 
 const VcfCutoff = ({ cutoff, setVcfCutoff }) => (
