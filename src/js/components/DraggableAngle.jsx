@@ -1,4 +1,4 @@
-import { memo, useCallback } from 'react';
+import React, { memo, useCallback } from 'react';
 import { DraggableCore } from 'react-draggable';
 
 const getAngleData = ({ x, y, lastX, lastY }) => {
