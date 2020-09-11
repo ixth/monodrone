@@ -1,13 +1,13 @@
 import { PureComponent } from 'react';
 import { connect } from 'react-redux';
 
-import { subscribeToAllMidiMessages } from '../lib/omni';
-import MIDIMessage from '../lib/midi-message';
+import { subscribeToAllMidiMessages } from 'lib/omni';
+import MIDIMessage from 'lib/midi-message';
 
-import { setDelayTime, setDelayFeedback } from '../reducers/delay';
-import { setLfoFrequency, setLfoIntensity } from '../reducers/lfo';
-import { setOscGain, setOscFrequency } from '../reducers/osc';
-import { setVcfCutoff } from '../reducers/vcf';
+import { setDelayTime, setDelayFeedback } from 'reducers/delay';
+import { setLfoFrequency, setLfoIntensity } from 'reducers/lfo';
+import { setOscGain, setOscFrequency } from 'reducers/osc';
+import { setVcfCutoff } from 'reducers/vcf';
 
 const frequencyFromNote = (tone) => 440 * Math.pow(2, (tone - 69) / 12);
 

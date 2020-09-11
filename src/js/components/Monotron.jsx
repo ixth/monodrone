@@ -1,13 +1,13 @@
-import Audio from './Audio';
-import Midi from './Midi';
-import Block from './Block';
-import Mode from './Mode';
-import LfoRate from './LfoRate';
-import LfoInt from './LfoInt';
-import VcfCutoff from './VcfCutoff';
-import DelayTime from './DelayTime';
-import DelayFeedback from './DelayFeedback';
-import Ribbon from './Ribbon';
+import Audio from 'components/Audio';
+import Midi from 'components/Midi';
+import Block from 'components/Block';
+import Mode from 'components/Mode';
+import LfoRate from 'components/LfoRate';
+import LfoInt from 'components/LfoInt';
+import VcfCutoff from 'components/VcfCutoff';
+import DelayTime from 'components/DelayTime';
+import DelayFeedback from 'components/DelayFeedback';
+import Ribbon from 'components/Ribbon';
 
 
 const Monotron = () => (

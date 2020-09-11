@@ -1,8 +1,8 @@
 import { connect } from 'react-redux';
-import { setLfoFrequency } from '../reducers/lfo';
+import { setLfoFrequency } from 'reducers/lfo';
 
-import Param from './Param';
-import Knob from './Knob';
+import Param from 'components/Param';
+import Knob from 'components/Knob';
 
 
 const LfoRate = ({ frequency, setLfoFrequency }) => (

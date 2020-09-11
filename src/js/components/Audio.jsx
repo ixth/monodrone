@@ -1,8 +1,8 @@
 import { PureComponent } from 'react';
 import { connect } from 'react-redux';
 
-import addAudioNodeHook from '../webaudio/audio-node-hook';
-import Monotron from '../webaudio/monotron';
+import addAudioNodeHook from 'webaudio/audio-node-hook';
+import Monotron from 'webaudio/monotron';
 
 
 const mapUnitToValue = (min, max, value) => min + value * (max - min);

@@ -1,6 +1,6 @@
-import { NoiseNode } from './noise';
-import { Oscillator } from './osc';
-import { Delay } from './delay';
+import { NoiseNode } from 'webaudio/noise';
+import { Oscillator } from 'webaudio/osc';
+import { Delay } from 'webaudio/delay';
 
 export default class Monotron {
     constructor(context) {

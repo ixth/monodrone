@@ -1,4 +1,4 @@
-import createReducer from '../create-reducer';
+import createReducer from 'create-reducer';
 
 export const LFO_SET_FREQUENCY = 'LFO_SET_FREQUENCY';
 export const LFO_SET_INTENSITY = 'LFO_SET_INTENSITY';

@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 
-import { turnOn, turnOff } from '../reducers/power';
-import { setLfoShape } from '../reducers/lfo';
+import { turnOn, turnOff } from 'reducers/power';
+import { setLfoShape } from 'reducers/lfo';
 
 
 const Position = ({ name, label, value, checked, onChange }) => (
