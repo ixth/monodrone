@@ -1,4 +1,4 @@
-import { memo, useCallback } from 'react';
+import React, { memo, useCallback } from 'react';
 import { noop, clamp } from 'lib/utils';
 import DraggableAngle from 'components/DraggableAngle';
 

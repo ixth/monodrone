@@ -1,4 +1,4 @@
-import { memo, useMemo } from 'react';
+import React, { memo, useMemo } from 'react';
 import { connect } from 'react-redux';
 
 import addAudioNodeHook from 'webaudio/audio-node-hook';

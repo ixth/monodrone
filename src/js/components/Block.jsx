@@ -1,4 +1,4 @@
-import { memo } from 'react';
+import React, { memo } from 'react';
 import { Children } from 'react';
 
 const Block = memo(({ title, children }) => (

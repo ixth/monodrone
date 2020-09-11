@@ -1,4 +1,4 @@
-import { useCallback } from 'react';
+import React, { useCallback } from 'react';
 import { useDispatch } from 'react-redux';
 import { setOscGain, setOscFrequency } from 'reducers/osc';
 import { clamp } from 'lib/utils';

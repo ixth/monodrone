@@ -23,7 +23,6 @@ module.exports = {
     plugins: [
         new CleanWebpackPlugin(),
         new HtmlWebpackPlugin({ template: 'src/index.html' }),
-        new webpack.ProvidePlugin({ 'React.createElement': ['react', 'createElement'] }),
         new CopyWebpackPlugin({
             patterns: [{ from: 'src/css', to: 'css' }],
         }),
