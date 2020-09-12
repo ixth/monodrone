@@ -11,7 +11,7 @@ const dragEnd = () => {
     document.body.style.cursor = '';
 };
 
-const Knob = ({ value = 0, spread = 280 / 360, onChange = noop }) => {
+const Knob = ({ value, spread, onChange }) => {
     const handleChange = useCallback(
         (e, data) => {
             onChange({
@@ -40,9 +40,15 @@ const Knob = ({ value = 0, spread = 280 / 360, onChange = noop }) => {
 };
 
 Knob.propTypes = {
-    value: PropTypes.number.isRequired,
-    spread: PropTypes.number.isRequired,
-    onChange: PropTypes.func.isRequired,
+    value: PropTypes.number,
+    spread: PropTypes.number,
+    onChange: PropTypes.func,
+};
+
+Knob.defaultProps = {
+    value: 0,
+    spread: 280 / 360,
+    onChange: noop,
 };
 
 export default memo(Knob);
