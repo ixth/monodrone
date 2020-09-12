@@ -47,9 +47,12 @@ const Monotron = () => {
         },
         [dispatch]
     );
-    const handleFeedbackChange = useCallback(({ value }) => dispatch(setDelayFeedback(value)), [
-        dispatch,
-    ]);
+    const handleFeedbackChange = useCallback(
+        ({ value }) => {
+            dispatch(setDelayFeedback(value));
+        },
+        [dispatch]
+    );
 
     return (
         <div className="device">
