@@ -4,7 +4,7 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 module.exports = {
-    entry: ['react', 'index'],
+    entry: ['index'],
     devtool: 'source-map',
     resolve: {
         modules: [path.resolve(__dirname, 'src/js'), 'node_modules'],
