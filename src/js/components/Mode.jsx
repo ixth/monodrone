@@ -38,7 +38,7 @@ const Mode = () => {
 
     const handleOff = useCallback(() => {
         dispatch(turnOff());
-    }, []);
+    }, [dispatch]);
 
     const handleSaw = useCallback(() => {
         dispatch(turnOn());
