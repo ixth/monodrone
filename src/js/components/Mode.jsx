@@ -36,13 +36,17 @@ Position.defaultProps = {
 const Mode = () => {
     const dispatch = useDispatch();
 
+    const handleOff = useCallback(() => {
+        dispatch(turnOff());
+    }, []);
+
     const handleSaw = useCallback(() => {
-        turnOn();
+        dispatch(turnOn());
         dispatch(setLfoShape('sawtooth'));
     }, [dispatch]);
 
     const handleSquare = useCallback(() => {
-        turnOn();
+        dispatch(turnOn());
         dispatch(setLfoShape('square'));
     }, [dispatch]);
 
@@ -56,11 +60,11 @@ const Mode = () => {
                 key="standby"
                 value="standby"
                 checked={value === 'standby'}
-                onChange={turnOff}
+                onChange={handleOff}
             />
             <Position
                 name="mode"
-                label=" ⋀"
+                label={'\u00a0⋀'}
                 key="sawtooth"
                 value="sawtooth"
                 checked={value === 'sawtooth'}
