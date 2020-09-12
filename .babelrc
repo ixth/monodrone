@@ -4,6 +4,8 @@
       "@babel/preset-env",
       {
         "modules": false,
+        "corejs": "3.6.5",
+        "useBuiltIns": "usage",
         "exclude": ["transform-regenerator"]
       }
     ],

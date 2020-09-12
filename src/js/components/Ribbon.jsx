@@ -1,11 +1,10 @@
 import React, { useCallback } from 'react';
 import { useDispatch } from 'react-redux';
 import { setOscGain, setOscFrequency } from 'reducers/osc';
-import { clamp } from 'lib/utils';
 
 import { DraggableCore } from 'react-draggable';
 
-const getFrequency = (ratio) => 23 * 1.886525 ** (8 * clamp(0, 1, ratio));
+const getFrequency = (ratio) => 23 * 1.886525 ** (8 * Math.clamp(0, 1, ratio));
 
 const Ribbon = () => {
     const dispatch = useDispatch();
