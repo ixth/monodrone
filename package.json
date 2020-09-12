@@ -37,7 +37,7 @@
     "webpack-dev-server": "3.11.0"
   },
   "scripts": {
-    "start": "webpack-dev-server --mode=development",
+    "start": "NODE_ENV=development webpack-dev-server --mode=development",
     "build": "webpack --mode=production",
     "hooks": "ln -sf $(pwd)/githooks/* .git/hooks || true",
     "postinstall": "yarn hooks"
