@@ -1,4 +1,6 @@
 {
+  "author": "Mikhail Menshikov <ainop+monotron@ya.ru>",
+  "license": "UNLICENSED",
   "name": "monodrone",
   "version": "0.0.1a",
   "devDependencies": {
