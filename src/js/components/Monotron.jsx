@@ -14,7 +14,6 @@ import { setLfoFrequency, setLfoIntensity } from 'reducers/lfo';
 import { setVcfCutoff } from 'reducers/vcf';
 import { setDelayFeedback, setDelayTime } from 'reducers/delay';
 
-
 const Monotron = () => {
     const dispatch = useDispatch();
 
@@ -24,21 +23,43 @@ const Monotron = () => {
     const delayTime = useSelector(({ delay }) => delay.time);
     const feedback = useSelector(({ delay }) => delay.feedback);
 
-    const handleFrequencyChange = useCallback(({ value }) => { dispatch(setLfoFrequency(value)); }, [dispatch]);
-    const handleIntensityChange = useCallback(({ value }) => { dispatch(setLfoIntensity(value)); }, [dispatch]);
-    const handleCutoffChange = useCallback(({ value }) => { dispatch(setVcfCutoff(value)); }, [dispatch]);
-    const handleDelayTimeChange = useCallback(({ value }) => { dispatch(setDelayTime(value)); }, [dispatch]);
-    const handleFeedbackChange = useCallback(({ value }) => dispatch(setDelayFeedback(value)), [dispatch]);
+    const handleFrequencyChange = useCallback(
+        ({ value }) => {
+            dispatch(setLfoFrequency(value));
+        },
+        [dispatch]
+    );
+    const handleIntensityChange = useCallback(
+        ({ value }) => {
+            dispatch(setLfoIntensity(value));
+        },
+        [dispatch]
+    );
+    const handleCutoffChange = useCallback(
+        ({ value }) => {
+            dispatch(setVcfCutoff(value));
+        },
+        [dispatch]
+    );
+    const handleDelayTimeChange = useCallback(
+        ({ value }) => {
+            dispatch(setDelayTime(value));
+        },
+        [dispatch]
+    );
+    const handleFeedbackChange = useCallback(({ value }) => dispatch(setDelayFeedback(value)), [
+        dispatch,
+    ]);
 
     return (
         <div className="device">
             <div className="device__blocks">
-                <Audio/>
-                <Midi/>
-                <Mode/>
+                <Audio />
+                <Midi />
+                <Mode />
                 <Block title="LFO">
-                    <Param title="Rate" led={true}>
-                        <Knob value={frequency} onChange={handleFrequencyChange}/>
+                    <Param title="Rate" led>
+                        <Knob value={frequency} onChange={handleFrequencyChange} />
                     </Param>
                     <Param title="Int">
                         <Knob value={intensity} onChange={handleIntensityChange} />
@@ -60,7 +81,7 @@ const Monotron = () => {
             </div>
             <div className="device__keyboard">
                 <div className="device__keyboard-content">
-                    <Ribbon/>
+                    <Ribbon />
                 </div>
             </div>
         </div>

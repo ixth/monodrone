@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import { useMemo } from 'react';
 import { useSelector } from 'react-redux';
 
 import addAudioNodeHook from 'webaudio/audio-node-hook';
@@ -29,7 +29,7 @@ const Audio = () => {
 
     monotron.vcf.frequency.value = mapUnitToValue(20, 20000, vcf.cutoff);
 
-    monotron.delay.delayTime.value = mapUnitToValue(.05, 2, delay.time);
+    monotron.delay.delayTime.value = mapUnitToValue(0.05, 2, delay.time);
     monotron.delay.feedback.value = mapUnitToValue(0, 1.5, delay.feedback);
 
     monotron.output.gain.value = power ? volume : 0;

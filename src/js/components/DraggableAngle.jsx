@@ -15,12 +15,17 @@ const getAngleData = ({ x, y, lastX, lastY }) => {
 
 const augmentDraggableData = (data) => ({ ...data, ...getAngleData(data) });
 
-const DraggableAngle = memo(({ onDrag, onStart, onStop, ...props }) => {
+const DraggableAngle = ({ onDrag, onStart, onStop, ...props }) => {
     const handleDrag = useCallback((e, data) => onDrag(e, augmentDraggableData(data)), [onDrag]);
     const handleStart = useCallback((e, data) => onStart(e, augmentDraggableData(data)), [onStart]);
     const handleStop = useCallback((e, data) => onStop(e, augmentDraggableData(data)), [onStop]);
 
-    return <DraggableCore {...props} onDrag={handleDrag} onStart={handleStart} onStop={handleStop} />;
-});
+    return (
+        // eslint-disable-next-line react/jsx-props-no-spreading
+        <DraggableCore {...props} onDrag={handleDrag} onStart={handleStart} onStop={handleStop} />
+    );
+};
 
-export default DraggableAngle;
+DraggableAngle.propTypes = DraggableCore.propTypes;
+
+export default memo(DraggableAngle);

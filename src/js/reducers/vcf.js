@@ -8,7 +8,7 @@ export const setVcfCutoff = (cutoff) => ({
 });
 
 export const initialState = {
-    cutoff: .5,
+    cutoff: 0.5,
 };
 
 export default createReducer(initialState, {
