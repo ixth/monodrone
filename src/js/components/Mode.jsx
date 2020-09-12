@@ -57,7 +57,6 @@ const Mode = () => {
             <Position
                 name="mode"
                 label="Standby"
-                key="standby"
                 value="standby"
                 checked={value === 'standby'}
                 onChange={handleOff}
@@ -65,7 +64,6 @@ const Mode = () => {
             <Position
                 name="mode"
                 label={'\u00a0⋀'}
-                key="sawtooth"
                 value="sawtooth"
                 checked={value === 'sawtooth'}
                 onChange={handleSaw}
