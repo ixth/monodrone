@@ -14,6 +14,16 @@ class Sequencer {
         this.bpm = 120;
     }
 
+    _loop = () => {
+        const beat = 60 / this.bpm;
+        const startTime = this.destination.context.currentTime;
+        const note = this._notes.next().value;
+        this.destination.frequency.setValueAtTime(notesMap[note], startTime);
+        this.destination.gain.setValueAtTime(1, startTime);
+        this.destination.gain.setValueAtTime(0, startTime + (0.9 * beat) / 2);
+        this._timeout = setTimeout(this._loop, (1000 * beat) / 2);
+    };
+
     // eslint-disable-next-line no-restricted-syntax
     static *_getNotes(melody) {
         let i = 0;
@@ -22,16 +32,6 @@ class Sequencer {
             // eslint-disable-next-line no-plusplus
             yield notes[i++ % notes.length];
         }
-    }
-
-    _loop() {
-        const beat = 60 / this.bpm;
-        const startTime = this.destination.context.currentTime;
-        const note = this._notes.next().value;
-        this.destination.frequency.setValueAtTime(notesMap[note], startTime);
-        this.destination.gain.setValueAtTime(1, startTime);
-        this.destination.gain.setValueAtTime(0, startTime + (0.9 * beat) / 2);
-        this._timeout = setTimeout(this._loop.bind(this, this._notes), (1000 * beat) / 2);
     }
 
     start() {
