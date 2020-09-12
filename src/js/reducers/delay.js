@@ -15,7 +15,7 @@ export const setDelayFeedback = (feedback) => ({
 
 export const initialState = {
     time: 0,
-    feedback: 1/3,
+    feedback: 1 / 3,
 };
 
 export default createReducer(initialState, {

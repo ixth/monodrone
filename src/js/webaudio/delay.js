@@ -1,5 +1,5 @@
-export class Delay {
-    constructor(context, {maxDelayTime, delayTime, feedback}) {
+class Delay {
+    constructor(context, { maxDelayTime, delayTime, feedback }) {
         const gain = context.createGain();
         const delay = context.createDelay(maxDelayTime);
 
@@ -18,24 +18,26 @@ export class Delay {
             delayTime: delay.delayTime,
             feedback: gain.gain,
             _gain: gain,
-            _delay: delay
+            _delay: delay,
         });
-	}
+    }
 
-	connect(destination) {
-		this._delay.connect(destination);
-	}
+    connect(destination) {
+        this._delay.connect(destination);
+    }
 
-	connectFeedback(destination) {
+    connectFeedback(destination) {
         this._gain.disconnect();
         this._gain.connect(destination);
     }
 
-	__connectFrom(source) {
-		source.connect(this._delay);
-	}
+    __connectFrom(source) {
+        source.connect(this._delay);
+    }
 
-	__disconnectFrom(source) {
-		source.disconnect(this._delay);
-	}
+    __disconnectFrom(source) {
+        source.disconnect(this._delay);
+    }
 }
+
+export default Delay;

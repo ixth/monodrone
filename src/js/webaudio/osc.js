@@ -1,5 +1,5 @@
-export class Oscillator {
-    constructor(context, {type, frequency, volume}) {
+class Oscillator {
+    constructor(context, { type, frequency, volume }) {
         const gain = context.createGain();
         const oscillator = context.createOscillator();
 
@@ -41,3 +41,5 @@ export class Oscillator {
         source.disconnect(this._gain);
     }
 }
+
+export default Oscillator;

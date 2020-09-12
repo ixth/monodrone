@@ -1,20 +1,20 @@
-import { NoiseNode } from 'webaudio/noise';
-import { Oscillator } from 'webaudio/osc';
-import { Delay } from 'webaudio/delay';
+import NoiseNode from 'webaudio/noise';
+import Oscillator from 'webaudio/osc';
+import Delay from 'webaudio/delay';
 
-export default class Monotron {
+class Monotron {
     constructor(context) {
         const output = context.createGain();
 
         const lfo = new Oscillator(context, {
             type: 'triangle',
             frequency: 6,
-            volume: 5
+            volume: 5,
         });
 
         const osc = new Oscillator(context, {
             type: 'sawtooth',
-            volume: 0
+            volume: 0,
         });
 
         const noise = new NoiseNode(context);
@@ -23,15 +23,15 @@ export default class Monotron {
 
         const delay = new Delay(context, {
             maxDelayTime: 2,
-            delayTime: .05,
-            feedback: 0.5
+            delayTime: 0.05,
+            feedback: 0.5,
         });
 
         lfo.connect(osc.frequency);
 
         osc.connect(vcf);
 
-        noise.gain.value = .01;
+        noise.gain.value = 0.01;
         noise.connect(vcf);
 
         vcf.frequency.value = 20000;
@@ -41,7 +41,7 @@ export default class Monotron {
         delay.connect(output);
         delay.connectFeedback(vcf);
 
-        output.gain.value = .5;
+        output.gain.value = 0.5;
         output.connect(context.destination);
 
         Object.assign(this, {
@@ -51,7 +51,9 @@ export default class Monotron {
             noise,
             vcf,
             delay,
-            output
+            output,
         });
     }
 }
+
+export default Monotron;

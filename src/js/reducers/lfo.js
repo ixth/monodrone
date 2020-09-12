@@ -20,8 +20,8 @@ export const setLfoShape = (shape) => ({
 });
 
 export const initialState = {
-    frequency: .8,
-    intensity: .5,
+    frequency: 0.8,
+    intensity: 0.5,
     shape: 'sawtooth',
 };
 

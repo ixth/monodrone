@@ -1,10 +1,12 @@
 import React, { useCallback } from 'react';
+import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { turnOn, turnOff } from 'reducers/power';
 import { setLfoShape } from 'reducers/lfo';
 
 const Position = ({ name, label, value, checked, onChange }) => (
+    // eslint-disable-next-line jsx-a11y/label-has-associated-control
     <label className="switch__position">
         <input
             className="switch__input"
@@ -14,12 +16,22 @@ const Position = ({ name, label, value, checked, onChange }) => (
             defaultChecked={checked}
             onChange={onChange}
         />
-        <span className="switch__knob"/>
-        <span className="switch__label">
-            {label}
-        </span>
+        <span className="switch__knob" />
+        <span className="switch__label">{label}</span>
     </label>
 );
+
+Position.propTypes = {
+    name: PropTypes.string.isRequired,
+    label: PropTypes.string.isRequired,
+    value: PropTypes.string.isRequired,
+    checked: PropTypes.bool,
+    onChange: PropTypes.func.isRequired,
+};
+
+Position.defaultProps = {
+    checked: false,
+};
 
 const Mode = () => {
     const dispatch = useDispatch();
@@ -27,14 +39,14 @@ const Mode = () => {
     const handleSaw = useCallback(() => {
         turnOn();
         dispatch(setLfoShape('sawtooth'));
-    }, [turnOn]);
+    }, [dispatch]);
 
     const handleSquare = useCallback(() => {
         turnOn();
         dispatch(setLfoShape('square'));
-    }, [turnOn]);
+    }, [dispatch]);
 
-    const value = useSelector((state) => state.power ? state.lfo.shape : 'standby');
+    const value = useSelector((state) => (state.power ? state.lfo.shape : 'standby'));
 
     return (
         <fieldset className="switch">
