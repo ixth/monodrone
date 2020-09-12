@@ -4,14 +4,14 @@ import { setOscGain, setOscFrequency } from 'reducers/osc';
 
 import { DraggableCore } from 'react-draggable';
 
-const getFrequency = (ratio) => 23 * 1.886525 ** (8 * Math.clamp(0, 1, ratio));
+const getFrequency = (ratio) => 23 * 1.886525 ** (8 * ratio);
 
 const Ribbon = () => {
     const dispatch = useDispatch();
 
     const handleStart = useCallback(
         (_, { x, node }) => {
-            dispatch(setOscFrequency(getFrequency(x / node.offsetWidth)));
+            dispatch(setOscFrequency(getFrequency(Math.clamp(0, 1, x / node.offsetWidth))));
             dispatch(setOscGain(1));
         },
         [dispatch]
