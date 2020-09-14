@@ -14,7 +14,7 @@ const Knob = ({ value, spread, onChange }) => {
     const handleChange = useCallback(
         (e, data) => {
             onChange({
-                value: Math.clamp(0, 1, value + data.deltaAngle / (spread * 2 * Math.PI)),
+                value: Math.clamp(value + data.deltaAngle / (spread * 2 * Math.PI), 0, 1),
             });
         },
         [onChange, value, spread]

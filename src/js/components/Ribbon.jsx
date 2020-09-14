@@ -11,7 +11,7 @@ const Ribbon = () => {
 
     const handleStart = useCallback(
         (_, { x, node }) => {
-            dispatch(setOscFrequency(getFrequency(Math.clamp(0, 1, x / node.offsetWidth))));
+            dispatch(setOscFrequency(getFrequency(Math.clamp(x / node.offsetWidth, 0, 1))));
             dispatch(setOscGain(1));
         },
         [dispatch]
