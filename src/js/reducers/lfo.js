@@ -1,23 +1,5 @@
-import createReducer from 'create-reducer';
-
-export const LFO_SET_FREQUENCY = 'LFO_SET_FREQUENCY';
-export const LFO_SET_INTENSITY = 'LFO_SET_INTENSITY';
-export const LFO_SET_SHAPE = 'LFO_SET_SHAPE';
-
-export const setLfoFrequency = (frequency) => ({
-    type: LFO_SET_FREQUENCY,
-    frequency,
-});
-
-export const setLfoIntensity = (intensity) => ({
-    type: LFO_SET_INTENSITY,
-    intensity,
-});
-
-export const setLfoShape = (shape) => ({
-    type: LFO_SET_SHAPE,
-    shape,
-});
+import { createSlice } from '@reduxjs/toolkit';
+import { setField } from './setField';
 
 export const initialState = {
     frequency: 0.8,
@@ -25,8 +7,16 @@ export const initialState = {
     shape: 'sawtooth',
 };
 
-export default createReducer(initialState, {
-    [LFO_SET_FREQUENCY]: (state, { frequency }) => ({ ...state, frequency }),
-    [LFO_SET_INTENSITY]: (state, { intensity }) => ({ ...state, intensity }),
-    [LFO_SET_SHAPE]: (state, { shape }) => ({ ...state, shape }),
+const { actions, reducer } = createSlice({
+    name: 'lfo',
+    initialState,
+    reducers: {
+        setLfoFrequency: setField('frequency'),
+        setLfoIntensity: setField('intensity'),
+        setLfoShape: setField('shape'),
+    },
 });
+
+export const { setLfoFrequency, setLfoIntensity, setLfoShape } = actions;
+
+export default reducer;
