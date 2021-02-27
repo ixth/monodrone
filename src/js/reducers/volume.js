@@ -1,14 +1,15 @@
-import createReducer from 'create-reducer';
-
-export const VOLUME_SET_VALUE = 'VOLUME_SET_VALUE';
-
-export const setVolume = (value) => ({
-    type: VOLUME_SET_VALUE,
-    value,
-});
+import { createSlice } from '@reduxjs/toolkit';
 
 export const initialState = 0.5;
 
-export default createReducer(initialState, {
-    [VOLUME_SET_VALUE]: (_, { value }) => value,
+const { actions, reducer } = createSlice({
+    name: 'volume',
+    initialState,
+    reducers: {
+        setVolume: (_, { payload }) => payload,
+    },
 });
+
+export const { setVolume } = actions;
+
+export default reducer;
