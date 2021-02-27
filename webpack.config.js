@@ -12,7 +12,7 @@ module.exports = {
     mode: isDevelopment ? 'development' : 'production',
     devtool: isDevelopment ? 'eval-source-map' : 'source-map',
     resolve: {
-        modules: [path.resolve(__dirname, 'src/js'), 'node_modules'],
+        modules: [path.resolve(__dirname, 'src/js'), path.resolve(__dirname, 'node_modules')],
         extensions: ['.js', '.jsx'],
     },
     module: {
