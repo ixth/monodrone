@@ -1,12 +1,12 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, VFC } from 'react';
 import { useDispatch } from 'react-redux';
-import { setOscGain, setOscFrequency } from 'reducers/osc';
-
 import { DraggableCore } from 'react-draggable';
 
-const getFrequency = (ratio) => 23 * 1.886525 ** (8 * ratio);
+import { setOscGain, setOscFrequency } from 'reducers/osc';
 
-const Ribbon = () => {
+import { getFrequency } from './utils';
+
+const Ribbon: VFC = () => {
     const dispatch = useDispatch();
 
     const handleStart = useCallback(

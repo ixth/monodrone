@@ -1,4 +1,4 @@
-import { useCallback, useEffect } from 'react';
+import { useCallback, useEffect, VFC } from 'react';
 import { useDispatch } from 'react-redux';
 
 import { subscribeToAllMidiMessages } from 'lib/omni';
@@ -10,9 +10,9 @@ import { setOscGain, setOscFrequency } from 'reducers/osc';
 import { setVcfCutoff } from 'reducers/vcf';
 import { setVolume } from 'reducers/volume';
 
-const frequencyFromNote = (tone) => 440 * 2 ** ((tone - 69) / 12);
+import { frequencyFromNote } from './utils';
 
-const Midi = () => {
+const Midi: VFC = () => {
     const dispatch = useDispatch();
 
     const handleMidiMessage = useCallback(

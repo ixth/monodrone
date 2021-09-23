@@ -7,7 +7,7 @@ import vcf from 'reducers/vcf';
 import delay from 'reducers/delay';
 import volume from 'reducers/volume';
 
-export default combineReducers({
+export const rootReducer = combineReducers({
     power,
     lfo,
     osc,
@@ -15,3 +15,5 @@ export default combineReducers({
     delay,
     volume,
 });
+
+export type RootState = ReturnType<typeof rootReducer>

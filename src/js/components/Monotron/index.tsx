@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, VFC } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import Audio from 'components/Audio';
@@ -13,15 +13,16 @@ import Knob from 'components/Knob';
 import { setLfoFrequency, setLfoIntensity } from 'reducers/lfo';
 import { setVcfCutoff } from 'reducers/vcf';
 import { setDelayFeedback, setDelayTime } from 'reducers/delay';
+import { RootState } from 'rootReducer';
 
-const Monotron = () => {
+const Monotron: VFC = () => {
     const dispatch = useDispatch();
 
-    const frequency = useSelector(({ lfo }) => lfo.frequency);
-    const intensity = useSelector(({ lfo }) => lfo.intensity);
-    const cutoff = useSelector(({ vcf }) => vcf.cutoff);
-    const delayTime = useSelector(({ delay }) => delay.time);
-    const feedback = useSelector(({ delay }) => delay.feedback);
+    const frequency = useSelector(({ lfo }: RootState) => lfo.frequency);
+    const intensity = useSelector(({ lfo }: RootState) => lfo.intensity);
+    const cutoff = useSelector(({ vcf }: RootState) => vcf.cutoff);
+    const delayTime = useSelector(({ delay }: RootState) => delay.time);
+    const feedback = useSelector(({ delay }: RootState) => delay.feedback);
 
     const handleFrequencyChange = useCallback(
         ({ value }) => {
