@@ -1,9 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { setField } from './setField';
 
-export const initialState = {
-    cutoff: 0.5,
-};
+export type VcfState = { cutoff: number };
+
+export const initialState = { cutoff: 0.5 } as VcfState;
 
 const { actions, reducer } = createSlice({
     name: 'vcf',

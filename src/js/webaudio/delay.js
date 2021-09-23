@@ -13,13 +13,11 @@ class Delay {
         delay.connect(gain);
         gain.connect(delay);
 
-        Object.assign(this, {
-            context,
-            delayTime: delay.delayTime,
-            feedback: gain.gain,
-            _gain: gain,
-            _delay: delay,
-        });
+        this.context = context;
+        this.delayTime = delay.delayTime;
+        this.feedback = gain.gain;
+        this._gain = gain;
+        this._delay = delay;
     }
 
     connect(destination) {

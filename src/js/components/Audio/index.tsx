@@ -1,8 +1,10 @@
-import { useMemo } from 'react';
+import { useMemo, VFC } from 'react';
 import { useSelector } from 'react-redux';
+import { RootState } from 'rootReducer';
 
 import addAudioNodeHook from 'webaudio/audio-node-hook';
 import Monotron from 'webaudio/monotron';
+import { mapUnitToValue } from './utils';
 
 addAudioNodeHook();
 
@@ -14,10 +16,8 @@ document.addEventListener('click', function cb() {
     }
 });
 
-const mapUnitToValue = (min, max, value) => min + value * (max - min);
-
-const Audio = () => {
-    const { delay, lfo, osc, power, vcf, volume } = useSelector((state) => state);
+const Audio: VFC = () => {
+    const { delay, lfo, osc, power, vcf, volume } = useSelector((state: RootState) => state);
     const monotron = useMemo(() => new Monotron(audioContext), []);
 
     monotron.lfo.frequency.value = mapUnitToValue(1, 50, lfo.frequency);

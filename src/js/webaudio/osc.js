@@ -16,13 +16,11 @@ class Oscillator {
         oscillator.start();
         oscillator.connect(gain);
 
-        Object.assign(this, {
-            context,
-            _gain: gain,
-            _oscillator: oscillator,
-            gain: gain.gain,
-            frequency: oscillator.frequency,
-        });
+        this.context = context;
+        this._gain = gain;
+        this._oscillator = oscillator;
+        this.gain = gain.gain;
+        this.frequency = oscillator.frequency;
     }
 
     set type(value) {

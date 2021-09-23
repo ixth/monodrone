@@ -1,10 +1,15 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { setField } from './setField';
 
+export type OscState = {
+    frequency: number;
+    gain: number;
+};
+
 export const initialState = {
     frequency: 440 / (20000 - 20),
     gain: 0,
-};
+} as OscState;
 
 const { actions, reducer } = createSlice({
     name: 'osc',
