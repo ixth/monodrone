@@ -12,15 +12,25 @@ module.exports = {
     mode: isDevelopment ? 'development' : 'production',
     devtool: isDevelopment ? 'eval-source-map' : 'source-map',
     resolve: {
-        modules: [path.resolve(__dirname, 'src/js'), path.resolve(__dirname, 'node_modules')],
-        extensions: ['.js', '.jsx'],
+        modules: [path.resolve(__dirname, 'src/js'), 'node_modules'],
+        extensions: ['.js', '.jsx', '.ts', '.tsx'],
     },
     module: {
         rules: [
             {
+                test: /\.tsx?$/,
+                include: path.resolve(__dirname, 'src/js'),
+                use: 'ts-loader',
+            },
+            {
                 test: /\.jsx?$/,
                 include: path.resolve(__dirname, 'src/js'),
                 use: 'babel-loader',
+            },
+            {
+                enforce: 'pre',
+                test: /\.js$/,
+                loader: 'source-map-loader',
             },
         ],
     },
