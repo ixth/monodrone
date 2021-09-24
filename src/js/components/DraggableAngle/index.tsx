@@ -1,4 +1,4 @@
-import React, { FC, memo, useCallback } from 'react';
+import { FC, memo, useCallback } from 'react';
 import { DraggableCore, DraggableCoreProps } from 'react-draggable';
 
 import { augmentDraggableData } from './utils';

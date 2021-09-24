@@ -1,4 +1,4 @@
-import React, { memo, Children, VFC, ReactNode } from 'react';
+import { memo, Children, VFC, ReactNode } from 'react';
 
 export type PropTypes = {
     title: string;

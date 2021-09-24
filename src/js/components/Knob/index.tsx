@@ -1,4 +1,4 @@
-import React, { FC, memo, useCallback } from 'react';
+import { FC, memo, useCallback } from 'react';
 import DraggableAngle from 'components/DraggableAngle';
 
 const dragStart = (): void => {
