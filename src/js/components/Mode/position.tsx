@@ -1,4 +1,4 @@
-import React, { InputHTMLAttributes, VFC } from 'react';
+import { InputHTMLAttributes, VFC } from 'react';
 
 const noop = () => { };
 

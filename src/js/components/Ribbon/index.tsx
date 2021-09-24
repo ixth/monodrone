@@ -1,4 +1,4 @@
-import React, { useCallback, VFC } from 'react';
+import { useCallback, VFC } from 'react';
 import { useDispatch } from 'react-redux';
 import { DraggableCore } from 'react-draggable';
 
