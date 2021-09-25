@@ -1,11 +1,14 @@
 {
   "compilerOptions": {
+    "declaration": true,
+    "emitDeclarationOnly": true,
+    "isolatedModules": true,
     "outDir": "dist",
     "noImplicitAny": true,
     "module": "commonjs",
     "allowJs": true,
     "allowSyntheticDefaultImports": true,
-    "baseUrl": "./src/js",
+    "baseUrl": "./src",
     "esModuleInterop": true,
     "experimentalDecorators": true,
     "forceConsistentCasingInFileNames": true,

@@ -4,14 +4,24 @@
       "@babel/preset-env",
       {
         "modules": false,
-        "corejs": "3.6.5",
+        "corejs": "3.18.0",
         "useBuiltIns": "usage",
-        "exclude": ["transform-regenerator"]
+        "shippedProposals": true
       }
     ],
-    "@babel/preset-react"
+    [
+      "@babel/preset-react",
+      {
+        "runtime": "automatic"
+      }
+    ],
+    "@babel/preset-typescript"
   ],
-  "plugins": [
-    "@babel/plugin-proposal-class-properties"
-  ]
+  "env": {
+    "development": {
+      "plugins": [
+        "@hh.ru/babel-plugin-react-source"
+      ]
+    }
+  }
 }
