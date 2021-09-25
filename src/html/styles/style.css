@@ -1,0 +1,18 @@
+@import url('https://fonts.googleapis.com/css?family=Pathway+Gothic+One|Passion+One|Iceland|Geostar');
+
+html, body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    --display-typeface-stack: 'Pathway Gothic One', 'Passion One', 'Iceland', 'Geostar', sans-serif;
+}
+
+body {
+    min-height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #000 url('space.jpg') center no-repeat;
+    background-size: cover;
+}
