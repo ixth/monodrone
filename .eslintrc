@@ -1,21 +1,79 @@
 {
     "root": true,
-    "parser": "babel-eslint",
-    "extends": ["airbnb", "plugin:prettier/recommended", "prettier/react"],
-    "plugins": ["babel"],
-    "env": {
-        "browser": true,
-        "es6": true
-    },
+    "parser": "@typescript-eslint/parser",
+    "extends": [
+        "@uniweb/eslint-config"
+    ],
+    "plugins": [
+        "@typescript-eslint"
+    ],
     "rules": {
-        "import/no-extraneous-dependencies": 0,
-        "no-underscore-dangle": 0
+        "simple-import-sort/imports": [
+            "error",
+            {
+                "groups": [
+                    // Node.js builtins. You could also generate this regex if you use a `.js` config.
+                    // For example: `^(${require("module").builtinModules.join("|")})(/|$)`
+                    [
+                        "^(assert|buffer|child_process|cluster|console|constants|crypto|dgram|dns|domain|events|fs|http|https|module|net|os|path|punycode|querystring|readline|repl|stream|string_decoder|sys|timers|tls|tty|url|util|vm|zlib|freelist|v8|process|async_hooks|http2|perf_hooks)(/.*|$)"
+                    ],
+                    // Packages. `react` related packages come first.
+                    [
+                        "^react",
+                        "^@?\\w"
+                    ],
+                    // Side effect imports.
+                    [
+                        "^\\u0000"
+                    ],
+                    // Internal packages.
+                    [
+                        "^(?:components|containers|lib|reducers|utils|webaudio)(?:/.*|$)",
+                        "rootReducers(?:\\.ts)?$",
+                        "store(?:\\.ts)?$"
+                    ],
+                    // Parent imports. Put `..` last.
+                    [
+                        "^\\.\\.(?!/?$)",
+                        "^\\.\\./?$"
+                    ],
+                    // Other relative imports. Put same-folder imports and `.` last.
+                    [
+                        "^\\./(?=.*/)(?!/?$)",
+                        "^\\.(?!/?$)",
+                        "^\\./?$"
+                    ],
+                    // Style imports.
+                    [
+                        "^.+\\.css$"
+                    ]
+                ]
+            }
+        ],
+        "no-underscore-dangle": "off",
+        "react/react-in-jsx-scope": "off"
     },
     "settings": {
         "import/resolver": {
             "webpack": {
-                "config": "./webpack.config.js"
+                "config": "./webpack.common.js"
             }
         }
-    }
+    },
+    "overrides": [
+        {
+            "files": [
+                "*.ts",
+                "*.tsx"
+            ],
+            "rules": {
+                // error
+                "@typescript-eslint/no-shadow": "error",
+                "@typescript-eslint/no-unused-vars": "error",
+                "@typescript-eslint/no-use-before-define": "error",
+                // off
+                "react/prop-types": "off"
+            }
+        }
+    ]
 }

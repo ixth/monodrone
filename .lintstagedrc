@@ -1,3 +1,7 @@
 {
-    "*.{js,jsx}": "eslint"
+    "*.{js,jsx}": "eslint",
+    "package.json": [
+        "sh -c 'yarn install'",
+        "git add yarn.lock"
+    ]
 }
