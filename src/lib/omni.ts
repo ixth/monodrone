@@ -1,6 +1,6 @@
-import MIDIMessage from 'lib/midi-message';
+import { MIDIMessage } from 'lib/MIDIMessage';
 
-let sharedMidiAccess;
+let sharedMidiAccess: Promise<WebMidi.MIDIAccess>;
 export const getSharedMidiAccess = async () => {
     if (!sharedMidiAccess) {
         if (!navigator.requestMIDIAccess) {
@@ -11,7 +11,7 @@ export const getSharedMidiAccess = async () => {
     return sharedMidiAccess;
 };
 
-export const subscribeToAllMidiMessages = async (onMessage) => {
+export const subscribeToAllMidiMessages = async (onMessage: (e: MIDIMessage) => void) => {
     const { inputs } = await getSharedMidiAccess();
     inputs.forEach((port) => {
         // eslint-disable-next-line no-param-reassign
