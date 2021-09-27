@@ -1,7 +1,7 @@
 import { memo, useCallback, useEffect, VFC } from 'react';
 import { useDispatch } from 'react-redux';
 
-import MIDIMessage from 'lib/midi-message';
+import { MIDIMessageType } from 'lib/MIDIMessage';
 import { subscribeToAllMidiMessages } from 'lib/omni';
 import { setDelayFeedback, setDelayTime } from 'reducers/delay';
 import { setLfoFrequency, setLfoIntensity } from 'reducers/lfo';
@@ -17,7 +17,7 @@ const MidiContainer: VFC = memo(() => {
     const handleMidiMessage = useCallback(
         ({ data, type }) => {
             switch (type) {
-                case MIDIMessage.NOTE_ON:
+                case MIDIMessageType.NOTE_ON:
                     if (data[1] === 0) {
                         dispatch(setOscGain(0));
                     } else {
@@ -26,12 +26,12 @@ const MidiContainer: VFC = memo(() => {
                     }
                     break;
 
-                case MIDIMessage.NOTE_OFF:
+                case MIDIMessageType.NOTE_OFF:
                     dispatch(setOscGain(0));
                     break;
 
-                case MIDIMessage.CONTROL_CHANGE:
-                    if (data[0] === MIDIMessage.CONTROL_VOLUME) {
+                case MIDIMessageType.CONTROL_CHANGE:
+                    if (data[0] === MIDIMessageType.CONTROL_VOLUME) {
                         dispatch(setVolume(data[1] / 0x7f));
                     }
 

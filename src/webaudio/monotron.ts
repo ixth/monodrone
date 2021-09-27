@@ -1,10 +1,26 @@
 import Delay from 'webaudio/delay';
 import NoiseNode from 'webaudio/noise';
-import Oscillator from 'webaudio/osc';
+import Oscillator from 'webaudio/oscillator';
 
-class Monotron {
-    constructor(context) {
-        const output = context.createGain();
+import { CustomAudioNode } from './custom-audio-node';
+
+class Monotron extends CustomAudioNode {
+    lfo: AudioNode;
+
+    osc: AudioNode;
+
+    noise: AudioNode;
+
+    vcf: AudioNode;
+
+    delay: AudioNode;
+
+    output: AudioNode;
+
+    constructor(context: BaseAudioContext) {
+        super(context);
+
+        const output = new GainNode(context, { gain: 0.5 });
 
         const lfo = new Oscillator(context, {
             type: 'triangle',
@@ -17,9 +33,9 @@ class Monotron {
             volume: 0,
         });
 
-        const noise = new NoiseNode(context);
+        const noise = new NoiseNode(context, { volume: 0.01 });
 
-        const vcf = context.createBiquadFilter();
+        const vcf = new BiquadFilterNode(context, { frequency: 20000 });
 
         const delay = new Delay(context, {
             maxDelayTime: 2,
@@ -30,21 +46,16 @@ class Monotron {
         lfo.connect(osc.frequency);
 
         osc.connect(vcf);
-
-        noise.gain.value = 0.01;
         noise.connect(vcf);
 
-        vcf.frequency.value = 20000;
         vcf.connect(output);
         vcf.connect(delay);
 
         delay.connect(output);
         delay.connectFeedback(vcf);
 
-        output.gain.value = 0.5;
         output.connect(context.destination);
 
-        this.context = context;
         this.lfo = lfo;
         this.osc = osc;
         this.noise = noise;
