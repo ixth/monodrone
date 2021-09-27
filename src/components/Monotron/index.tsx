@@ -43,7 +43,7 @@ const Monotron: VFC<PropTypes> = ({
         <div className="device__blocks">
             <AudioContainer />
             <MidiContainer />
-            <Mode value={mode} onChange={onModeChange} />;
+            <Mode value={mode} onChange={onModeChange} />
             <Block title="LFO">
                 <Param title="Rate" led>
                     <Knob value={frequency} onChange={onFrequencyChange} />

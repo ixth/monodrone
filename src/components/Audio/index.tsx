@@ -1,11 +1,11 @@
 import { useMemo, VFC } from 'react';
 
-import addAudioNodeHook from 'webaudio/audio-node-hook';
+import { patchAudioNode } from 'webaudio/custom-audio-node';
 import Monotron from 'webaudio/monotron';
 
 import { mapUnitToValue } from './utils';
 
-addAudioNodeHook();
+patchAudioNode();
 
 const audioContext = new AudioContext();
 document.addEventListener('click', function cb() {
@@ -17,7 +17,7 @@ document.addEventListener('click', function cb() {
 
 type AudioProps = {
     delay: { time: number; feedback: number };
-    lfo: { frequency: number; intensity: number; shape: 'sawtooth' | 'square' };
+    lfo: { frequency: number; intensity: number; shape: OscillatorType };
     osc: { gain: number; frequency: number };
     power: boolean;
     vcf: { cutoff: number };

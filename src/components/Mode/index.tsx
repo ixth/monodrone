@@ -10,7 +10,9 @@ type PropTypes<T> = {
     onChange: (value: T) => void;
 };
 
-const Mode: VFC<PropTypes<'standby' | 'sawtooth' | 'square'>> = ({
+type OscillatorMode = Extract<OscillatorType, 'sawtooth' | 'square'>;
+
+const Mode: VFC<PropTypes<'standby' | OscillatorMode>> = ({
     value = 'standby',
     onChange = noop,
 }) => {
