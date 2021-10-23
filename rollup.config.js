@@ -15,10 +15,9 @@ export default [
             resolve(),
             commonjs({
                 include: 'node_modules/**',
-                sourceMap: false,
                 namedExports: {
                     'node_modules/react-dom/index.js': [ 'ReactDOM' ],
-                    'node_modules/react/index.js': [ 'Component', 'Fragment', 'createElement' ]
+                    'node_modules/react/index.js': [ 'Component', 'Children', 'createElement', 'Fragment' ]
                 }
             }),
             replace({
