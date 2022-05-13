@@ -14,8 +14,17 @@ jobs:
         with:
           persist-credentials: false
 
-      - name: Install and Build 🔧
-        run: npm install && npm run build
+      - name: Install node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
+          cache: 'yarn'
+
+      - name: Install 📦
+        run: yarn install --frozen-lockfile
+
+      - name: Build 🏗
+        run: yarn build
 
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@4.0.0
