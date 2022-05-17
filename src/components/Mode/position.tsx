@@ -1,12 +1,13 @@
-import { InputHTMLAttributes, VFC } from 'react';
-import noop from 'lodash.noop';
+import type { InputHTMLAttributes, VFC } from 'react';
 
 export type PropTypes = Pick<
     InputHTMLAttributes<HTMLInputElement>,
-    'name' | 'value' | 'checked' | 'onChange'
-> & { label: string };
+    'checked' | 'name' | 'onChange' | 'value'
+> & {
+    label: string;
+};
 
-const Position: VFC<PropTypes> = ({ name, label, value, checked = false, onChange = noop }) => (
+const Position: VFC<PropTypes> = ({ name, label, value, checked = false, onChange }) => (
     <label className="switch__position">
         <input
             className="switch__input"

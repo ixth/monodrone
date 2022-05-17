@@ -1,4 +1,5 @@
 import { useCallback, VFC } from 'react';
+import { DraggableEventHandler } from 'react-draggable';
 import { useDispatch } from 'react-redux';
 
 import Ribbon from 'components/Ribbon';
@@ -9,7 +10,7 @@ import { getFrequency } from './utils';
 const RibbonContainer: VFC = () => {
     const dispatch = useDispatch();
 
-    const onStart = useCallback(
+    const onStart = useCallback<DraggableEventHandler>(
         (_, { x, node }) => {
             dispatch(setOscFrequency(getFrequency(Math.clamp(x / node.offsetWidth, 0, 1))));
             dispatch(setOscGain(1));
@@ -17,14 +18,14 @@ const RibbonContainer: VFC = () => {
         [dispatch]
     );
 
-    const onDrag = useCallback(
+    const onDrag = useCallback<DraggableEventHandler>(
         (_, { x, node }) => {
             dispatch(setOscFrequency(getFrequency(x / node.offsetWidth)));
         },
         [dispatch]
     );
 
-    const onStop = useCallback(() => {
+    const onStop = useCallback<DraggableEventHandler>(() => {
         dispatch(setOscGain(0));
     }, [dispatch]);
 

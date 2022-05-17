@@ -1,8 +1,8 @@
-import { memo, useCallback, useEffect, VFC } from 'react';
+import { memo, useCallback, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 
 import { MIDIMessageType } from 'lib/MIDIMessage';
-import { subscribeToAllMidiMessages } from 'lib/omni';
+import { MIDIMessageHandler, subscribeToAllMidiMessages } from 'lib/omni';
 import { setDelayFeedback, setDelayTime } from 'reducers/delay';
 import { setLfoFrequency, setLfoIntensity } from 'reducers/lfo';
 import { setOscFrequency, setOscGain } from 'reducers/osc';
@@ -14,7 +14,7 @@ import { frequencyFromNote } from './utils';
 const MidiContainer: VFC = memo(() => {
     const dispatch = useDispatch();
 
-    const handleMidiMessage = useCallback(
+    const handleMidiMessage = useCallback<MIDIMessageHandler>(
         ({ data, type }) => {
             switch (type) {
                 case MIDIMessageType.NOTE_ON:
@@ -64,7 +64,9 @@ const MidiContainer: VFC = memo(() => {
     );
 
     useEffect(() => {
-        subscribeToAllMidiMessages(handleMidiMessage);
+        subscribeToAllMidiMessages(handleMidiMessage).catch((e) => {
+            console.error(e);
+        });
     }, [handleMidiMessage]);
 
     return null;

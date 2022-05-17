@@ -2,11 +2,11 @@ import { createSlice } from '@reduxjs/toolkit';
 
 import { setField } from './setField';
 
-export type LfoState = {
+export interface LfoState {
     frequency: number;
     intensity: number;
     shape: 'sawtooth' | 'square';
-};
+}
 
 export const initialState = {
     frequency: 0.8,

@@ -10,9 +10,9 @@ import RibbonContainer from 'containers/Ribbon';
 
 import './styles/device.css';
 
-type PropTypes = {
-    mode: 'standby' | 'sawtooth' | 'square';
-    onModeChange: (value: 'standby' | 'sawtooth' | 'square') => void;
+interface PropTypes {
+    mode: 'sawtooth' | 'square' | 'standby';
+    onModeChange: (value: 'sawtooth' | 'square' | 'standby') => void;
     frequency: number;
     onFrequencyChange: (e: { value: number }) => void;
     intensity: number;
@@ -23,7 +23,7 @@ type PropTypes = {
     onDelayTimeChange: (e: { value: number }) => void;
     feedback: number;
     onFeedbackChange: (e: { value: number }) => void;
-};
+}
 
 const Monotron: VFC<PropTypes> = ({
     mode,

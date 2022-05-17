@@ -3,10 +3,10 @@ import cn from 'clsx';
 
 import './styles/param.css';
 
-export type PropTypes = {
+export interface PropTypes {
     title: string;
     led?: boolean;
-};
+}
 
 const Param: FC<PropTypes> = ({ title, led = false, children }) => (
     <label className="param">

@@ -1,10 +1,10 @@
 import type { DraggableData } from 'react-draggable';
 
-export type AngleData = {
+export interface AngleData {
     angle: number;
     lastAngle: number;
     deltaAngle: number;
-};
+}
 
 const modAngle = (angle: number): number => {
     const absoluteAngle = Math.abs(angle);
@@ -21,7 +21,9 @@ export const getAngleData = ({ x, y, lastX, lastY }: DraggableData): AngleData =
     };
 };
 
-export const augmentDraggableData = (data: DraggableData): DraggableData & AngleData => ({
+export type AugmentedDraggableData = DraggableData & AngleData;
+
+export const augmentDraggableData = (data: DraggableData): AngleData & DraggableData => ({
     ...data,
     ...getAngleData(data),
 });

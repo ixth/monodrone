@@ -2,10 +2,10 @@ import { createSlice } from '@reduxjs/toolkit';
 
 import { setField } from './setField';
 
-export type DelayState = {
+export interface DelayState {
     time: number;
     feedback: number;
-};
+}
 
 export const initialState = {
     time: 0,

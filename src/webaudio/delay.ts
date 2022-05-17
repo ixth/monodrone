@@ -1,19 +1,19 @@
 import { CustomAudioNode } from './custom-audio-node';
 
-type DelayOptions = {
+interface DelayOptions {
     maxDelayTime: number;
     delayTime: number;
     feedback: number;
-};
+}
 
 class Delay extends CustomAudioNode {
     delayTime: AudioParam;
 
     feedback: AudioParam;
 
-    private _gain: GainNode;
+    private readonly _gain: GainNode;
 
-    private _delay: DelayNode;
+    private readonly _delay: DelayNode;
 
     constructor(
         context: BaseAudioContext,
@@ -32,20 +32,20 @@ class Delay extends CustomAudioNode {
         delay.connect(gain).connect(delay);
     }
 
-    connect(destination: AudioNode | AudioParam) {
+    connect(destination: AudioNode | AudioParam): void {
         return this._delay.connect(destination);
     }
 
-    connectFeedback(destination: AudioNode) {
+    connectFeedback(destination: AudioNode): void {
         this._gain.disconnect();
         this._gain.connect(destination);
     }
 
-    __connectFrom(source: AudioNode) {
+    __connectFrom(source: AudioNode): AudioNode | void {
         source.connect(this._delay);
     }
 
-    __disconnectFrom(source: AudioNode) {
+    __disconnectFrom(source: AudioNode): void {
         source.disconnect(this._delay);
     }
 }

@@ -2,10 +2,10 @@ import { createSlice } from '@reduxjs/toolkit';
 
 import { setField } from './setField';
 
-export type OscState = {
+export interface OscState {
     frequency: number;
     gain: number;
-};
+}
 
 export const initialState = {
     frequency: 440 / (20000 - 20),

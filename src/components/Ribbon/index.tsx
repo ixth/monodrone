@@ -1,9 +1,9 @@
-import { VFC } from 'react';
+import type { VFC } from 'react';
 import { DraggableCore, DraggableCoreProps } from 'react-draggable';
 
 import './styles/keyboard.css';
 
-type PropTypes = Pick<DraggableCoreProps, 'onStart' | 'onDrag' | 'onStop'>;
+type PropTypes = Pick<DraggableCoreProps, 'onDrag' | 'onStart' | 'onStop'>;
 
 const Ribbon: VFC<PropTypes> = ({ onStart, onDrag, onStop }) => (
     <div className="keyboard">

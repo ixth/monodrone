@@ -2,24 +2,20 @@ import Delay from 'webaudio/delay';
 import NoiseNode from 'webaudio/noise';
 import Oscillator from 'webaudio/oscillator';
 
-import { CustomAudioNode } from './custom-audio-node';
+class Monotron {
+    lfo: Oscillator;
 
-class Monotron extends CustomAudioNode {
-    lfo: AudioNode;
+    osc: Oscillator;
 
-    osc: AudioNode;
+    noise: NoiseNode;
 
-    noise: AudioNode;
+    vcf: BiquadFilterNode;
 
-    vcf: AudioNode;
+    delay: Delay;
 
-    delay: AudioNode;
-
-    output: AudioNode;
+    output: GainNode;
 
     constructor(context: BaseAudioContext) {
-        super(context);
-
         const output = new GainNode(context, { gain: 0.5 });
 
         const lfo = new Oscillator(context, {

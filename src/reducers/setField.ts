@@ -1,9 +1,9 @@
 import type { Reducer } from 'react';
 
-type ActionType = {
+interface ActionType {
     type: string;
     payload: unknown;
-};
+}
 
 export const setField =
     <State, Action extends ActionType>(name: string): Reducer<State, Action> =>

@@ -1,36 +1,47 @@
 import { FC, memo, useCallback } from 'react';
-import { DraggableCore, DraggableCoreProps } from 'react-draggable';
-import noop from 'lodash.noop';
+import {
+    DraggableCore,
+    DraggableCoreProps,
+    DraggableEvent,
+    DraggableEventHandler,
+} from 'react-draggable';
 
-import { augmentDraggableData } from './utils';
+import { augmentDraggableData, AugmentedDraggableData } from './utils';
 
-export type PropTypes = Partial<DraggableCoreProps>;
+export type DraggableAngleEventHandler = (
+    e: DraggableEvent,
+    data: AugmentedDraggableData
+) => void | false;
 
-const DraggableAngle: FC<PropTypes> = memo(
-    ({ onDrag = noop, onStart = noop, onStop = noop, ...props }) => {
-        const handleDrag = useCallback(
-            (e, data) => onDrag(e, augmentDraggableData(data)),
-            [onDrag]
-        );
-        const handleStart = useCallback(
-            (e, data) => onStart(e, augmentDraggableData(data)),
-            [onStart]
-        );
-        const handleStop = useCallback(
-            (e, data) => onStop(e, augmentDraggableData(data)),
-            [onStop]
-        );
+export type PropTypes = Omit<Partial<DraggableCoreProps>, 'onStart' | 'onDrag' | 'onStop'> & {
+    onDrag?: DraggableAngleEventHandler;
+    onStart?: DraggableAngleEventHandler;
+    onStop?: DraggableAngleEventHandler;
+};
 
-        return (
-            <DraggableCore
-                // eslint-disable-next-line react/jsx-props-no-spreading
-                {...props}
-                onDrag={handleDrag}
-                onStart={handleStart}
-                onStop={handleStop}
-            />
-        );
-    }
-);
+const DraggableAngle: FC<PropTypes> = memo(({ onDrag, onStart, onStop, ...props }) => {
+    const handleDrag = useCallback<DraggableEventHandler>(
+        (e, data) => {
+            onDrag?.(e, augmentDraggableData(data));
+        },
+        [onDrag]
+    );
+    const handleStart = useCallback<DraggableEventHandler>(
+        (e, data) => {
+            onStart?.(e, augmentDraggableData(data));
+        },
+        [onStart]
+    );
+    const handleStop = useCallback<DraggableEventHandler>(
+        (e, data) => {
+            onStop?.(e, augmentDraggableData(data));
+        },
+        [onStop]
+    );
+
+    return (
+        <DraggableCore {...props} onDrag={handleDrag} onStart={handleStart} onStop={handleStop} />
+    );
+});
 
 export default DraggableAngle;

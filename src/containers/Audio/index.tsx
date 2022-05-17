@@ -1,6 +1,6 @@
 import { VFC } from 'react';
 import { useSelector } from 'react-redux';
-import { RootState } from 'rootReducer';
+import type { RootState } from 'rootReducer';
 
 import Audio from 'components/Audio';
 

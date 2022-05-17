@@ -1,7 +1,6 @@
 import { FC, memo, useCallback } from 'react';
-import noop from 'lodash.noop';
 
-import DraggableAngle from 'components/DraggableAngle';
+import DraggableAngle, { DraggableAngleEventHandler } from 'components/DraggableAngle';
 
 import './styles/knob.css';
 
@@ -13,16 +12,16 @@ const dragEnd = (): void => {
     document.body.style.cursor = '';
 };
 
-export type PropTypes = {
+export interface PropTypes {
     value?: number;
     spread?: number;
     onChange?: (e: { value: number }) => void;
-};
+}
 
-const Knob: FC<PropTypes> = memo(({ value = 0, spread = 280 / 360, onChange = noop }) => {
-    const handleChange = useCallback(
+const Knob: FC<PropTypes> = memo(({ value = 0, spread = 280 / 360, onChange }) => {
+    const handleChange = useCallback<DraggableAngleEventHandler>(
         (_, data) => {
-            onChange({
+            onChange?.({
                 value: Math.clamp(value + data.deltaAngle / (spread * 2 * Math.PI), 0, 1),
             });
         },

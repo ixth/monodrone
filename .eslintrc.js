@@ -1,6 +1,6 @@
 module.exports = {
     root: true,
-    extends: ['@ixth/eslint-config'],
+    extends: ['@ixth/eslint-config', 'plugin:react/jsx-runtime'],
     rules: {
         'simple-import-sort/imports': [
             'error',
@@ -31,6 +31,7 @@ module.exports = {
                 ],
             },
         ],
+        'react/jsx-props-no-spreading': 'warn',
     },
     overrides: [
         {
