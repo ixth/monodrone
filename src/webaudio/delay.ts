@@ -29,7 +29,8 @@ class Delay extends CustomAudioNode {
         this.feedback = gain.gain;
         this._gain = gain;
 
-        delay.connect(gain).connect(delay);
+        delay.connect(gain);
+        gain.connect(delay);
     }
 
     connect(destination: AudioNode | AudioParam): void {

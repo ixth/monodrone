@@ -1,3 +1,5 @@
+import MIDIMessageEvent = WebMidi.MIDIMessageEvent;
+
 type MIDIMessageChannel = number & { type: 'message-channel' };
 
 export enum MIDIMessageType {
@@ -36,7 +38,7 @@ export class MIDIMessage {
 
     status: number;
 
-    constructor(e: WebMidi.MIDIMessageEvent) {
+    constructor(e: MIDIMessageEvent) {
         const { data } = e;
 
         this.raw = data;

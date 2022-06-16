@@ -1,3 +1,4 @@
+/* eslint-disable */
 export abstract class CustomAudioNode {
     protected constructor(protected context: BaseAudioContext) {}
 

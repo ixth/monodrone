@@ -1,3 +1,5 @@
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-nocheck
 import type Oscillator from './oscillator';
 
 const notesMap: Record<string, number> = {
@@ -24,7 +26,9 @@ class Sequencer {
 
     _loop = (): void => {
         const beat = 60 / this.bpm;
+        // eslint-disable-next-line @typescript-eslint/no-non-null-asserted-optional-chain
         const note = this._notes?.next().value!;
+        // eslint-disable-next-line @typescript-eslint/no-non-null-asserted-optional-chain
         const startTime = this.destination?.context.currentTime!;
         this.destination?.frequency.setValueAtTime(notesMap[note], startTime);
         this.destination?.gain.setValueAtTime(1, startTime);
