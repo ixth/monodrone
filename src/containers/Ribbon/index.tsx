@@ -1,5 +1,4 @@
 import { useCallback, VFC } from 'react';
-import { DraggableEventHandler } from 'react-draggable';
 import { useDispatch } from 'react-redux';
 
 import Ribbon from 'components/Ribbon';
@@ -7,25 +6,28 @@ import { setOscFrequency, setOscGain } from 'reducers/osc';
 
 import { getFrequency } from './utils';
 
+const getRatio = (e: MouseEvent) =>
+    Math.clamp(e.offsetX / (e.currentTarget as HTMLElement).offsetWidth, 0, 1);
+
 const RibbonContainer: VFC = () => {
     const dispatch = useDispatch();
 
-    const onStart = useCallback<DraggableEventHandler>(
-        (_, { x, node }) => {
-            dispatch(setOscFrequency(getFrequency(Math.clamp(x / node.offsetWidth, 0, 1))));
+    const onStart = useCallback(
+        (e: MouseEvent) => {
+            dispatch(setOscFrequency(getFrequency(getRatio(e))));
             dispatch(setOscGain(1));
         },
         [dispatch]
     );
 
-    const onDrag = useCallback<DraggableEventHandler>(
-        (_, { x, node }) => {
-            dispatch(setOscFrequency(getFrequency(x / node.offsetWidth)));
+    const onDrag = useCallback(
+        (e: MouseEvent) => {
+            dispatch(setOscFrequency(getFrequency(getRatio(e))));
         },
         [dispatch]
     );
 
-    const onStop = useCallback<DraggableEventHandler>(() => {
+    const onStop = useCallback(() => {
         dispatch(setOscGain(0));
     }, [dispatch]);
 
