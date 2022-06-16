@@ -2,10 +2,10 @@ import { Children, memo, ReactNode, VFC } from 'react';
 
 import './styles/block.css';
 
-export type PropTypes = {
+export interface PropTypes {
     title: string;
     children: ReactNode;
-};
+}
 
 const Block: VFC<PropTypes> = memo(({ title, children }) => (
     <fieldset className="block">

@@ -1,9 +1,6 @@
-name: Build and Deploy
+name: Lint
 
-on:
-  push:
-    branches:
-      - master
+on: pull_request
 
 jobs:
   build-and-deploy:
@@ -24,12 +21,4 @@ jobs:
         run: yarn install --frozen-lockfile
 
       - name: Build 🏗
-        run: yarn build
-
-      - name: Deploy 🚀
-        uses: JamesIves/github-pages-deploy-action@4.0.0
-        with:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          BRANCH: gh-pages
-          FOLDER: dist
-          CLEAN: true
+        run: yarn lint

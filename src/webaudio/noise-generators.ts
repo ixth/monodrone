@@ -1,6 +1,6 @@
 export type NoiseGenerator = Generator<number, number>;
 
-export function generateSlice(g: Generator, length: number) {
+export function generateSlice(g: NoiseGenerator, length: number): number[] {
     return Array.from({ length }, () => g.next().value);
 }
 

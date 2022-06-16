@@ -6,20 +6,23 @@ import { setOscFrequency, setOscGain } from 'reducers/osc';
 
 import { getFrequency } from './utils';
 
+const getRatio = (e: MouseEvent) =>
+    Math.clamp(e.offsetX / (e.currentTarget as HTMLElement).offsetWidth, 0, 1);
+
 const RibbonContainer: VFC = () => {
     const dispatch = useDispatch();
 
     const onStart = useCallback(
-        (_, { x, node }) => {
-            dispatch(setOscFrequency(getFrequency(Math.clamp(x / node.offsetWidth, 0, 1))));
+        (e: MouseEvent) => {
+            dispatch(setOscFrequency(getFrequency(getRatio(e))));
             dispatch(setOscGain(1));
         },
         [dispatch]
     );
 
     const onDrag = useCallback(
-        (_, { x, node }) => {
-            dispatch(setOscFrequency(getFrequency(x / node.offsetWidth)));
+        (e: MouseEvent) => {
+            dispatch(setOscFrequency(getFrequency(getRatio(e))));
         },
         [dispatch]
     );

@@ -9,22 +9,19 @@ const merge = mergeWithRules({
             test: 'match',
             use: 'prepend',
         },
-    }
+    },
 });
 
-module.exports =
-    merge(common, {
-        mode: 'development',
-        devtool: 'eval-source-map',
-        module: {
-            rules: [
-                {
-                    test: /\.css$/i,
-                    use: ['style-loader'],
-                },
-            ]
-        },
-        plugins: [
-            new EnvironmentPlugin({ NODE_ENV: 'development' }),
+module.exports = merge(common, {
+    mode: 'development',
+    devtool: 'eval-source-map',
+    module: {
+        rules: [
+            {
+                test: /\.css$/i,
+                use: ['style-loader'],
+            },
         ],
-    });
+    },
+    plugins: [new EnvironmentPlugin({ NODE_ENV: 'development' })],
+});

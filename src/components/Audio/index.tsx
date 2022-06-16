@@ -10,19 +10,21 @@ patchAudioNode();
 const audioContext = new AudioContext();
 document.addEventListener('click', function cb() {
     if (audioContext.state === 'suspended') {
-        audioContext.resume();
+        audioContext.resume().catch((e) => {
+            console.error(e);
+        });
         document.removeEventListener('click', cb);
     }
 });
 
-type AudioProps = {
+interface AudioProps {
     delay: { time: number; feedback: number };
     lfo: { frequency: number; intensity: number; shape: OscillatorType };
     osc: { gain: number; frequency: number };
     power: boolean;
     vcf: { cutoff: number };
     volume: number;
-};
+}
 
 const Audio: VFC<AudioProps> = ({ delay, lfo, osc, power, vcf, volume }) => {
     const monotron = useMemo(() => new Monotron(audioContext), []);

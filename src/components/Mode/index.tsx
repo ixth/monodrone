@@ -1,31 +1,27 @@
 import { useCallback, VFC } from 'react';
-import noop from 'lodash.noop';
 
 import Position from './position';
 
 import './styles/switch.css';
 
-type PropTypes<T> = {
+interface PropTypes<T> {
     value: T;
-    onChange: (value: T) => void;
-};
+    onChange?: (value: T) => void;
+}
 
 type OscillatorMode = Extract<OscillatorType, 'sawtooth' | 'square'>;
 
-const Mode: VFC<PropTypes<'standby' | OscillatorMode>> = ({
-    value = 'standby',
-    onChange = noop,
-}) => {
+const Mode: VFC<PropTypes<OscillatorMode | 'standby'>> = ({ value = 'standby', onChange }) => {
     const handleStandby = useCallback(() => {
-        onChange('standby');
+        onChange?.('standby');
     }, [onChange]);
 
     const handleSaw = useCallback(() => {
-        onChange('sawtooth');
+        onChange?.('sawtooth');
     }, [onChange]);
 
     const handleSquare = useCallback(() => {
-        onChange('square');
+        onChange?.('square');
     }, [onChange]);
 
     return (

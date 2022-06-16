@@ -1,38 +1,45 @@
-// @ts-ignore
+/* eslint-disable */
+export abstract class CustomAudioNode {
+    protected constructor(protected context: BaseAudioContext) {}
 
-export abstract class CustomAudioNode implements AudioNode {
-    constructor(protected context: BaseAudioContext) {}
+    abstract __connectFrom(sourceNode: AudioNode, output?: number, input?: number): AudioNode;
 
-    __connectFrom(sourceNode: AudioNode, output?: number, input?: number) {
-        throw new Error('Not implemented');
-    }
-
-    __disconnectFrom(sourceNode: AudioNode, output?: number, input?: number) {
-        throw new Error('Not implemented');
-    }
+    abstract __disconnectFrom(sourceNode: AudioNode, output?: number, input?: number): void;
 }
 
-export const patchAudioNode = () => {
+export interface PatchedAudioNode extends AudioNode {
+    originalConnect: AudioNode['connect'];
+    originalDisconnect: AudioNode['disconnect'];
+}
+
+export const patchAudioNode = (): void => {
     if (typeof AudioNode !== 'undefined') {
         Object.assign(AudioNode.prototype, {
             originalConnect: AudioNode.prototype.connect,
 
-            connect: function audioNodeConnect(this: AudioNode, ...args: any[]) {
+            connect: function audioNodeConnect(
+                this: PatchedAudioNode,
+                ...args: Parameters<AudioNode['connect']>
+            ): AudioNode | void {
                 const [destinationNode, ...rest] = args;
                 if (destinationNode instanceof CustomAudioNode) {
                     return destinationNode.__connectFrom(this, ...rest);
                 }
-                return this.originalConnect(...args);
+                this.originalConnect(...args);
             },
 
             originalDisconnect: AudioNode.prototype.disconnect,
 
-            disconnect: function audioNodeDisconnect(this: AudioNode, ...args: any[]) {
+            disconnect: function audioNodeDisconnect(
+                this: PatchedAudioNode,
+                ...args: Parameters<AudioNode['disconnect']>
+            ): AudioNode | void {
                 const [destinationNode, ...rest] = args;
                 if (destinationNode instanceof CustomAudioNode) {
-                    return destinationNode.__disconnectFrom(this, ...rest);
+                    destinationNode.__disconnectFrom(this, ...rest);
+                    return;
                 }
-                return this.originalDisconnect(...args);
+                this.originalDisconnect(...args);
             },
         });
     }

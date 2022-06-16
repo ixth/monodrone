@@ -1,17 +1,17 @@
 import { CustomAudioNode } from './custom-audio-node';
 
-type OscillatorOptions = {
+interface OscillatorOptions {
     type: OscillatorType;
     frequency: number;
     volume: number;
-};
+}
 
 class Oscillator extends CustomAudioNode {
     gain: AudioParam;
 
     frequency: AudioParam;
 
-    private _gain: GainNode;
+    private readonly _gain: GainNode;
 
     private _oscillator: OscillatorNode;
 
@@ -37,15 +37,15 @@ class Oscillator extends CustomAudioNode {
         this._oscillator.type = value;
     }
 
-    connect(destination: AudioNode) {
+    connect(destination: AudioNode): void {
         this._gain.connect(destination);
     }
 
-    __connectFrom(source: AudioNode) {
+    __connectFrom(source: AudioNode): AudioNode | void {
         source.connect(this._gain);
     }
 
-    __disconnectFrom(source: AudioNode) {
+    __disconnectFrom(source: AudioNode): void {
         source.disconnect(this._gain);
     }
 }

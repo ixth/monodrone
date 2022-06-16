@@ -3,12 +3,12 @@ import { generateSlice, PinkNoise } from './noise-generators';
 
 const noiseGenerator = PinkNoise();
 
-type NoiseNodeOptions = {
+interface NoiseNodeOptions {
     volume: number;
-};
+}
 
 class NoiseNode extends CustomAudioNode {
-    private _gain: GainNode;
+    private readonly _gain: GainNode;
 
     gain: AudioParam;
 
@@ -33,15 +33,15 @@ class NoiseNode extends CustomAudioNode {
         return processor;
     }
 
-    connect(destination: AudioNode) {
+    connect(destination: AudioNode): void {
         this._gain.connect(destination);
     }
 
-    __connectFrom(source: AudioNode) {
+    __connectFrom(source: AudioNode): AudioNode | void {
         source.connect(this._gain);
     }
 
-    __disconnectFrom(source: AudioNode) {
+    __disconnectFrom(source: AudioNode): void {
         source.disconnect(this._gain);
     }
 }
