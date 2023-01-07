@@ -1,5 +1,3 @@
-import MIDIMessageEvent = WebMidi.MIDIMessageEvent;
-
 type MIDIMessageChannel = number & { type: 'message-channel' };
 
 export enum MIDIMessageType {
@@ -21,7 +19,7 @@ export enum MIDIMessageType {
  * https://www.midi.org/specifications/item/table-1-summary-of-midi-message
  *
  * @class MIDIMessage
- * @param {MIDIMessageEvent} e
+ * @param {WebMidi.MIDIMessageEvent} e
  * @param {Uint8Array} e.data
  * @param {Uint8Array} e.timeStamp
  */
@@ -38,7 +36,7 @@ export class MIDIMessage {
 
     status: number;
 
-    constructor(e: MIDIMessageEvent) {
+    constructor(e: WebMidi.MIDIMessageEvent) {
         const { data } = e;
 
         this.raw = data;
