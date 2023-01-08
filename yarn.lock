@@ -1033,26 +1033,26 @@
   resolved "https://registry.yarnpkg.com/@humanwhocodes/object-schema/-/object-schema-1.2.1.tgz#b520529ec21d8e5945a1851dfd1c32e94e39ff45"
   integrity sha512-ZnQMnLV4e7hDlUvw8H+U8ASL02SS2Gn6+9Ac3wGGLIe7+je2AeAOxPY+izIPJDfFDb7eDjev0Us8MO1iFRN8hA==
 
-"@ixth/eslint-config-react@ixth/eslint-config-react#v0.0.1":
-  version "0.0.1"
-  resolved "https://codeload.github.com/ixth/eslint-config-react/tar.gz/3e4d227b7f0f9bf0912239668b37dccfc4f03278"
-  dependencies:
-    "@babel/eslint-parser" "^7.19.1"
-    "@ixth/eslint-config" "github:ixth/eslint-config#v0.0.6"
-    eslint-plugin-jsx-a11y "^6.6.1"
-    eslint-plugin-prettier "^4.2.1"
-    eslint-plugin-react "^7.31.11"
-    eslint-plugin-react-hooks "^4.6.0"
-
-"@ixth/eslint-config@github:ixth/eslint-config#v0.0.6":
-  version "0.0.6"
-  resolved "https://codeload.github.com/ixth/eslint-config/tar.gz/191095658c3fa0413026fcc27d04d0d1d1ecaead"
+"@ixth/eslint-config-base@github:ixth/eslint-config-base#v0.0.7":
+  version "0.0.7"
+  resolved "https://codeload.github.com/ixth/eslint-config-base/tar.gz/27f853ef6f8067d8c36fdb7b8cefe3d86c8f2dfe"
   dependencies:
     "@babel/eslint-parser" "^7.19.1"
     eslint-config-airbnb-base "^15.0.0"
     eslint-config-prettier "^8.6.0"
     eslint-plugin-import "^2.26.0"
     eslint-plugin-prettier "^4.2.1"
+
+"@ixth/eslint-config-react@ixth/eslint-config-react#v0.0.1":
+  version "0.0.1"
+  resolved "https://codeload.github.com/ixth/eslint-config-react/tar.gz/9621b387325bdeb2ed9da076ee518383469ecd85"
+  dependencies:
+    "@babel/eslint-parser" "^7.19.1"
+    "@ixth/eslint-config-base" "github:ixth/eslint-config-base#v0.0.7"
+    eslint-plugin-jsx-a11y "^6.6.1"
+    eslint-plugin-prettier "^4.2.1"
+    eslint-plugin-react "^7.31.11"
+    eslint-plugin-react-hooks "^4.6.0"
 
 "@jridgewell/gen-mapping@^0.3.0", "@jridgewell/gen-mapping@^0.3.2":
   version "0.3.2"
