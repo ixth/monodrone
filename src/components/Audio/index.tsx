@@ -1,21 +1,14 @@
 import { useEffect, useMemo, VFC } from 'react';
 
-import { patchAudioNode } from 'webaudio/custom-audio-node';
-import { Monotron } from 'webaudio/monotron';
+import { patchAudioNode } from '@ixth/wa-components/custom-audio-node';
+import { Monotron } from '@ixth/wa-components/monotron';
 
-import { mapUnitToValue } from './utils';
+import { mapUnitToValue, resumeContextOnInteraction } from './utils';
 
 patchAudioNode();
 
 const audioContext = new AudioContext();
-document.addEventListener('click', function cb() {
-    if (audioContext.state === 'suspended') {
-        audioContext.resume().catch((e) => {
-            console.error(e);
-        });
-        document.removeEventListener('click', cb);
-    }
-});
+resumeContextOnInteraction(audioContext);
 
 interface AudioProps {
     delay: { time: number; feedback: number };

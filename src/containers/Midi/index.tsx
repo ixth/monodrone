@@ -1,8 +1,8 @@
 import { memo, useCallback, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 
-import { MIDIMessageType } from 'lib/MIDIMessage';
-import { MIDIMessageHandler, subscribeToAllMidiMessages } from 'lib/omni';
+import { MIDIMessageType } from '@ixth/midi-utils/MIDIMessage';
+import { MIDIMessageHandler, subscribeToAllMidiMessages } from '@ixth/midi-utils/omni';
 import { setDelayFeedback, setDelayTime } from 'reducers/delay';
 import { setLfoFrequency, setLfoIntensity } from 'reducers/lfo';
 import { setOscFrequency, setOscGain } from 'reducers/osc';
