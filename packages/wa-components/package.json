@@ -1,0 +1,39 @@
+{
+  "name": "@ixth/wa-components",
+  "author": "Mikhail Menshikov <ainop+monotron@ya.ru>",
+  "license": "MIT",
+  "version": "0.0.1-rc.0",
+  "bugs": {
+    "url": "https://github.com/ixth/monodrone/issues"
+  },
+  "homepage": "https://github.com/ixth/monodrone#readme",
+  "repository": {
+    "type": "git",
+    "url": "github:ixth/monodrone",
+    "directory": "packages/wa-components"
+  },
+  "exports": {
+    "./*": "./dist/*.js"
+  },
+  "typesVersions": {
+    "*": {
+      "*": [
+        "dist/*"
+      ]
+    }
+  },
+  "devDependencies": {
+    "@ixth/eslint-config-base": "0.0.1-rc.0",
+    "@thi.ng/colored-noise": "^1.0.5",
+    "@typescript-eslint/eslint-plugin": "^5.48.0",
+    "@typescript-eslint/parser": "^5.48.0",
+    "eslint": "^8.31.0",
+    "lint-staged": "^13.1.0",
+    "prettier": "^2.8.2",
+    "typescript": "^4.9.4"
+  },
+  "scripts": {
+    "build": "tsc --project tsconfig.json",
+    "lint": "eslint 'src/**/*.ts'"
+  }
+}

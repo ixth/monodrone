@@ -1,4 +1,4 @@
-import { MIDIMessage } from 'lib/MIDIMessage';
+import { MIDIMessage } from './MIDIMessage';
 
 let sharedMidiAccess: Promise<WebMidi.MIDIAccess> | undefined;
 export const getSharedMidiAccess = async (): Promise<WebMidi.MIDIAccess> => {
