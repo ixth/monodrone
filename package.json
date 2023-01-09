@@ -47,7 +47,6 @@
     "webpack-merge": "5.8.0"
   },
   "scripts": {
-    "ci": "rm -rf node_modules && yarn install --non-interactive --frozen-lockfile",
     "start": "webpack serve --config webpack.dev.js",
     "build": "webpack --config webpack.prod.js",
     "build:stats": "webpack --config webpack.prod.js --progress --profile --json > stats.json",
