@@ -1,7 +1,7 @@
 {
     "*.{js,jsx}": "eslint",
     "package.json": [
-        "sh -c 'yarn install'",
-        "git add yarn.lock"
+        "sh -c 'npm install --package-lock-only'",
+        "git add package-lock.json"
     ]
 }
