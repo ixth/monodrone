@@ -3,51 +3,57 @@ import { CustomAudioNode } from './custom-audio-node';
 interface OscillatorOptions {
     type: OscillatorType;
     frequency: number;
-    volume: number;
+    gain: number;
 }
 
-class Oscillator extends CustomAudioNode {
-    gain: AudioParam;
+export class OscillatorTypeParam {
+    constructor(private _oscillatorNode: OscillatorNode) {}
 
-    frequency: AudioParam;
+    get value(): OscillatorType {
+        return this._oscillatorNode.type;
+    }
 
-    private readonly _gain: GainNode;
+    set value(value: OscillatorType) {
+        this._oscillatorNode.type = value;
+    }
+}
 
-    private _oscillator: OscillatorNode;
+export class Oscillator extends CustomAudioNode {
+    static numberOfInputs = 0;
+
+    static numberOfOutputs = 1;
+
+    private _oscillatorNode: OscillatorNode;
+
+    public gain: AudioParam;
+
+    public frequency: AudioParam;
+
+    public type: OscillatorTypeParam;
 
     constructor(
         context: BaseAudioContext,
-        { type, frequency, volume }: Partial<OscillatorOptions>
+        { type, frequency, gain }: Partial<OscillatorOptions>
     ) {
         super(context);
 
-        const gain = new GainNode(context, { gain: volume });
-        this.gain = gain.gain;
-        this._gain = gain;
+        const gainNode = new GainNode(context, { gain });
+        this.gain = gainNode.gain;
 
-        const oscillator = new OscillatorNode(context, { type, frequency });
-        this.frequency = oscillator.frequency;
-        this._oscillator = oscillator;
+        this._oscillatorNode = new OscillatorNode(context, { type, frequency });
+        this.frequency = this._oscillatorNode.frequency;
+        this.type = new OscillatorTypeParam(this._oscillatorNode);
 
-        oscillator.start();
-        oscillator.connect(gain);
+        this._oscillatorNode.connect(gainNode);
+
+        this._outputs[0] = gainNode;
     }
 
-    set type(value: OscillatorType) {
-        this._oscillator.type = value;
+    start() {
+        this._oscillatorNode.start();
     }
 
-    connect(destination: AudioNode): void {
-        this._gain.connect(destination);
-    }
-
-    __connectFrom(source: AudioNode): AudioNode | void {
-        source.connect(this._gain);
-    }
-
-    __disconnectFrom(source: AudioNode): void {
-        source.disconnect(this._gain);
+    stop() {
+        this._oscillatorNode.stop();
     }
 }
-
-export default Oscillator;

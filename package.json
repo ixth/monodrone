@@ -12,6 +12,7 @@
     "@hh.ru/babel-plugin-react-source": "0.3.1",
     "@ixth/eslint-config-react": "^0.0.1-rc.0",
     "@reduxjs/toolkit": "1.6.1",
+    "@thi.ng/colored-noise": "^1.0.6",
     "@types/core-js": "2.5.5",
     "@types/react": "17",
     "@types/react-dom": "17.0.9",

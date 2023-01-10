@@ -1,64 +1,85 @@
-import Delay from 'webaudio/delay';
-import NoiseNode from 'webaudio/noise';
-import Oscillator from 'webaudio/oscillator';
+import { CustomAudioNode } from './custom-audio-node';
+import { FeedbackDelay } from './feedback-delay';
+import { NoiseNode } from './noise';
+import { Oscillator, OscillatorTypeParam } from './oscillator';
 
-class Monotron {
-    lfo: Oscillator;
+export class Monotron extends CustomAudioNode {
+    static numberOfInputs = 0;
 
-    osc: Oscillator;
+    static numberOfOutputs = 1;
 
-    noise: NoiseNode;
+    public gain: AudioParam;
 
-    vcf: BiquadFilterNode;
+    public lfoType: OscillatorTypeParam;
 
-    delay: Delay;
+    public lfoRate: AudioParam;
 
-    output: GainNode;
+    public lfoInt: AudioParam;
+
+    public vcfCutoff: AudioParam;
+
+    public delayTime: AudioParam;
+
+    public delayFeedback: AudioParam;
+
+    public oscPitch: AudioParam;
+
+    public oscGate: AudioParam;
 
     constructor(context: BaseAudioContext) {
-        const output = new GainNode(context, { gain: 0.5 });
+        super(context);
 
-        const lfo = new Oscillator(context, {
+        const gainNode = new GainNode(context, { gain: 0.5 });
+
+        const lfoNode = new Oscillator(context, {
             type: 'triangle',
             frequency: 6,
-            volume: 5,
+            gain: 5,
         });
 
-        const osc = new Oscillator(context, {
+        const oscNode = new Oscillator(context, {
             type: 'sawtooth',
-            volume: 0,
+            gain: 0,
         });
 
-        const noise = new NoiseNode(context, { volume: 0.01 });
+        const noiseNode = new NoiseNode(context, { gain: 0.01 });
 
-        const vcf = new BiquadFilterNode(context, { frequency: 20000 });
+        const vcfNode = new BiquadFilterNode(context, { frequency: 20000 });
 
-        const delay = new Delay(context, {
+        const delayNode = new FeedbackDelay(context, {
             maxDelayTime: 2,
             delayTime: 0.05,
             feedback: 0.5,
         });
 
-        lfo.connect(osc.frequency);
+        lfoNode.connect(oscNode.frequency);
+        lfoNode.start();
 
-        osc.connect(vcf);
-        noise.connect(vcf);
+        oscNode.connect(vcfNode);
+        oscNode.start();
 
-        vcf.connect(output);
-        vcf.connect(delay);
+        noiseNode.connect(vcfNode);
 
-        delay.connect(output);
-        delay.connectFeedback(vcf);
+        vcfNode.connect(gainNode);
+        vcfNode.connect(delayNode);
 
-        output.connect(context.destination);
+        delayNode.connect(gainNode);
+        delayNode.connect(vcfNode, 1);
 
-        this.lfo = lfo;
-        this.osc = osc;
-        this.noise = noise;
-        this.vcf = vcf;
-        this.delay = delay;
-        this.output = output;
+        this.gain = gainNode.gain;
+
+        this.lfoType = lfoNode.type;
+        this.lfoRate = lfoNode.frequency;
+        this.lfoInt = lfoNode.gain;
+
+        this.vcfCutoff = vcfNode.frequency;
+
+        this.delayTime = delayNode.delayTime;
+        this.delayFeedback = delayNode.feedback;
+
+        this.oscPitch = oscNode.frequency;
+        this.oscGate = oscNode.gain;
+
+        this._outputs[0] = gainNode;
     }
 }
-
-export default Monotron;
