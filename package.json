@@ -11,6 +11,8 @@
     "@babel/preset-typescript": "7.15.0",
     "@hh.ru/babel-plugin-react-source": "0.3.1",
     "@ixth/eslint-config-react": "^0.0.1-rc.0",
+    "@ixth/midi-utils": "0.0.1-rc.0",
+    "@ixth/wa-components": "0.0.1-rc.0",
     "@reduxjs/toolkit": "1.6.1",
     "@thi.ng/colored-noise": "^1.0.6",
     "@types/core-js": "2.5.5",
@@ -53,5 +55,9 @@
     "build:stats": "webpack --config webpack.prod.js --progress --profile --json > stats.json",
     "postinstall": "if [ -d .git ]; then git config core.hooksPath ./githooks; fi",
     "lint": "eslint 'src/**/*.{ts,tsx}'"
-  }
+  },
+  "workspaces": [
+    "packages/wa-components",
+    "packages/midi-utils"
+  ]
 }
