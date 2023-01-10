@@ -1,49 +1,42 @@
-import { CustomAudioNode } from './custom-audio-node';
-import { generateSlice, PinkNoise } from './noise-generators';
+import { pink } from '@thi.ng/colored-noise';
 
-const noiseGenerator = PinkNoise();
+import { CustomAudioNode } from './custom-audio-node';
 
 interface NoiseNodeOptions {
-    volume: number;
+    gain: number;
 }
 
-class NoiseNode extends CustomAudioNode {
-    private readonly _gain: GainNode;
+function take<T>(g: Generator<T, never>, length: number): T[] {
+    return Array.from({ length }, () => g.next().value);
+}
 
-    gain: AudioParam;
+export class NoiseNode extends CustomAudioNode {
+    static numberOfInputs = 0;
 
-    generator = noiseGenerator;
+    static numberOfOutputs = 1;
 
-    constructor(context: BaseAudioContext, { volume }: NoiseNodeOptions) {
+    public gain: AudioParam;
+
+    private _generator = pink() as Generator<number, never>;
+
+    constructor(context: BaseAudioContext, { gain }: NoiseNodeOptions) {
         super(context);
 
-        const gain = new GainNode(context, { gain: volume });
-        this.gain = gain.gain;
-        this._gain = gain;
+        const gainNode = new GainNode(context, { gain });
+        this.gain = gainNode.gain;
 
-        this.initScriptProcessor().connect(gain);
+        const processorNode = this.initScriptProcessor();
+        processorNode.connect(gainNode);
+
+        this._outputs[0] = gainNode;
     }
 
     initScriptProcessor(): ScriptProcessorNode {
         const bufferSize = 4096;
         const processor = this.context.createScriptProcessor(bufferSize, 1, 1);
         processor.onaudioprocess = (e) => {
-            e.outputBuffer.getChannelData(0).set(generateSlice(this.generator, bufferSize));
+            e.outputBuffer.getChannelData(0).set(take(this._generator, bufferSize));
         };
         return processor;
     }
-
-    connect(destination: AudioNode): void {
-        this._gain.connect(destination);
-    }
-
-    __connectFrom(source: AudioNode): AudioNode | void {
-        source.connect(this._gain);
-    }
-
-    __disconnectFrom(source: AudioNode): void {
-        source.disconnect(this._gain);
-    }
 }
-
-export default NoiseNode;

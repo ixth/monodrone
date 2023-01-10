@@ -1,7 +1,7 @@
-import { useMemo, VFC } from 'react';
+import { useEffect, useMemo, VFC } from 'react';
 
 import { patchAudioNode } from 'webaudio/custom-audio-node';
-import Monotron from 'webaudio/monotron';
+import { Monotron } from 'webaudio/monotron';
 
 import { mapUnitToValue } from './utils';
 
@@ -29,19 +29,23 @@ interface AudioProps {
 const Audio: VFC<AudioProps> = ({ delay, lfo, osc, power, vcf, volume }) => {
     const monotron = useMemo(() => new Monotron(audioContext), []);
 
-    monotron.lfo.frequency.value = mapUnitToValue(1, 50, lfo.frequency);
-    monotron.lfo.gain.value = mapUnitToValue(0, 10, lfo.intensity);
-    monotron.lfo.type = lfo.shape;
+    useEffect(() => {
+        monotron.connect(audioContext.destination);
+    }, [monotron]);
 
-    monotron.osc.gain.value = osc.gain;
-    monotron.osc.frequency.value = osc.frequency;
+    monotron.gain.value = power ? volume : 0;
 
-    monotron.vcf.frequency.value = mapUnitToValue(20, 20000, vcf.cutoff);
+    monotron.lfoRate.value = mapUnitToValue(1, 50, lfo.frequency);
+    monotron.lfoInt.value = mapUnitToValue(0, 10, lfo.intensity);
+    monotron.lfoType.value = lfo.shape;
 
-    monotron.delay.delayTime.value = mapUnitToValue(0.05, 2, delay.time);
-    monotron.delay.feedback.value = mapUnitToValue(0, 1.5, delay.feedback);
+    monotron.vcfCutoff.value = mapUnitToValue(20, 20000, vcf.cutoff);
 
-    monotron.output.gain.value = power ? volume : 0;
+    monotron.delayTime.value = mapUnitToValue(0.05, 2, delay.time);
+    monotron.delayFeedback.value = mapUnitToValue(0, 1.5, delay.feedback);
+
+    monotron.oscGate.value = Math.round(osc.gain);
+    monotron.oscPitch.value = osc.frequency;
 
     return null;
 };
