@@ -19,5 +19,8 @@ jobs:
       - name: Install
         run: npm ci
 
-      - name: Check
-        run: npm run lint:packages && npm run lint
+      - name: Install
+        run: npm run build --workspaces
+
+      - name: Check workspaces
+        run: npm run lint --workspaces && npm run lint

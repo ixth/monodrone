@@ -1,19 +1,23 @@
 module.exports = {
     root: true,
-    extends: ['@ixth/eslint-config-react', 'plugin:react/jsx-runtime'],
-    rules: {
-        'react/jsx-props-no-spreading': 'warn',
-    },
+    extends: [
+        '@ixth/eslint-config-base',
+        '@ixth/eslint-config-react/tsx',
+        '@ixth/eslint-config-typescript',
+    ],
     overrides: [
         {
+            files: ['*.jsx', '*.tsx'],
+            rules: {
+                'react/jsx-props-no-spreading': 'warn',
+            },
+        },
+        {
             files: ['*.ts', '*.tsx'],
-            extends: [
-                'plugin:@typescript-eslint/eslint-recommended',
-                'plugin:@typescript-eslint/recommended',
-                'plugin:@typescript-eslint/recommended-requiring-type-checking',
-            ],
+            extends: ['plugin:@typescript-eslint/recommended-requiring-type-checking'],
             parserOptions: {
-                project: './tsconfig.json',
+                tsconfigRootDir: __dirname,
+                project: ['./tsconfig.eslint.json', './packages/*/tsconfig.json'],
             },
         },
     ],
@@ -21,6 +25,15 @@ module.exports = {
         'import/resolver': {
             webpack: {
                 config: './webpack.common.js',
+            },
+            typescript: {
+                project: './tsconfig.json',
+            },
+            workspaces: {
+                sources: {
+                    '@ixth/wa-components/*': ['./packages/wa-components/src/*'],
+                    '@ixth/midi-utils/*': ['./packages/midi-utils/src/*'],
+                },
             },
         },
         react: {

@@ -40,9 +40,7 @@ module.exports = {
             {
                 test: /\.css$/i,
                 include: srcRoot,
-                use: [
-                    'css-loader'
-                ],
+                use: ['css-loader'],
             },
             {
                 test: /((?<!\.d)\.ts|\.tsx|\.js|\.jsx)$/,

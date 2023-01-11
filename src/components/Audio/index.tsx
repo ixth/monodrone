@@ -8,7 +8,9 @@ import { mapUnitToValue, resumeContextOnInteraction } from './utils';
 patchAudioNode();
 
 const audioContext = new AudioContext();
-resumeContextOnInteraction(audioContext);
+resumeContextOnInteraction(audioContext).catch((e) => {
+    console.error(e);
+});
 
 interface AudioProps {
     delay: { time: number; feedback: number };

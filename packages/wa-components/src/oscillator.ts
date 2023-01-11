@@ -1,21 +1,10 @@
+import { OscillatorTypeParam } from './oscillator-type-param';
 import { CustomAudioNode } from './custom-audio-node';
 
 interface OscillatorOptions {
     type: OscillatorType;
     frequency: number;
     gain: number;
-}
-
-export class OscillatorTypeParam {
-    constructor(private _oscillatorNode: OscillatorNode) {}
-
-    get value(): OscillatorType {
-        return this._oscillatorNode.type;
-    }
-
-    set value(value: OscillatorType) {
-        this._oscillatorNode.type = value;
-    }
 }
 
 export class Oscillator extends CustomAudioNode {
@@ -31,10 +20,7 @@ export class Oscillator extends CustomAudioNode {
 
     public type: OscillatorTypeParam;
 
-    constructor(
-        context: BaseAudioContext,
-        { type, frequency, gain }: Partial<OscillatorOptions>
-    ) {
+    constructor(context: BaseAudioContext, { type, frequency, gain }: Partial<OscillatorOptions>) {
         super(context);
 
         const gainNode = new GainNode(context, { gain });
