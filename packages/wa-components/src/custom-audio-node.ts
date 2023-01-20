@@ -30,6 +30,7 @@ export class CustomAudioNode extends EventTarget implements AudioNode {
 
     connect(destinationParam: AudioParam, output?: number): void;
 
+    // eslint-disable-next-line consistent-return
     connect(destination: AudioNode | AudioParam, output = 0, input = 0): AudioNode | void {
         if (destination instanceof AudioNode) {
             return this._outputs[output].connect(destination, 0, input);
@@ -51,6 +52,7 @@ export class CustomAudioNode extends EventTarget implements AudioNode {
 
     disconnect(destinationParam: AudioParam, output: number): void;
 
+    // eslint-disable-next-line consistent-return
     disconnect(destination?: number | AudioNode | AudioParam, output = 0, input = 0): void {
         if (typeof destination === 'undefined') {
             this._outputs[output].disconnect();
@@ -77,7 +79,7 @@ export const patchAudioNode = (): void => {
     }
 
     Object.assign(AudioNode.prototype, {
-        /* eslint-disable-next-line @typescript-eslint/unbound-method */
+        // eslint-disable-next-line @typescript-eslint/unbound-method
         originalConnect: AudioNode.prototype.connect,
 
         connect: function audioNodeConnect(
@@ -85,13 +87,12 @@ export const patchAudioNode = (): void => {
             ...args: Parameters<AudioNode['connect']>
         ): AudioNode | void {
             const [destinationNode, ...rest] = args;
-            if (destinationNode instanceof CustomAudioNode) {
-                return destinationNode.__connectFrom(this, ...rest);
-            }
-            this.originalConnect(...args);
+            return destinationNode instanceof CustomAudioNode
+                ? destinationNode.__connectFrom(this, ...rest)
+                : this.originalConnect(...args);
         },
 
-        /* eslint-disable-next-line @typescript-eslint/unbound-method */
+        // eslint-disable-next-line @typescript-eslint/unbound-method
         originalDisconnect: AudioNode.prototype.disconnect,
 
         disconnect: function audioNodeDisconnect(
@@ -101,9 +102,9 @@ export const patchAudioNode = (): void => {
             const [destinationNode, ...rest] = args;
             if (destinationNode instanceof CustomAudioNode) {
                 destinationNode.__disconnectFrom(this, ...rest);
-                return;
+            } else {
+                this.originalDisconnect(...args);
             }
-            this.originalDisconnect(...args);
         },
     });
 };

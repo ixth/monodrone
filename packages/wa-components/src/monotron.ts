@@ -1,7 +1,8 @@
 import { CustomAudioNode } from './custom-audio-node';
 import { FeedbackDelay } from './feedback-delay';
 import { NoiseNode } from './noise';
-import { Oscillator, OscillatorTypeParam } from './oscillator';
+import { Oscillator } from './oscillator';
+import { OscillatorTypeParam } from './oscillator-type-param';
 
 export class Monotron extends CustomAudioNode {
     static numberOfInputs = 0;

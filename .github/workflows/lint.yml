@@ -3,10 +3,10 @@ name: Lint
 on: pull_request
 
 jobs:
-  build-and-deploy:
+  run-linters:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout 🛎️
+      - name: Checkout
         uses: actions/checkout@v2.3.4
         with:
           persist-credentials: false
@@ -16,8 +16,11 @@ jobs:
         with:
           node-version: 16
 
-      - name: Install 📦
+      - name: Install
         run: npm ci
 
-      - name: Build 🏗
-        run: npm run lint
+      - name: Install
+        run: npm run build --workspaces
+
+      - name: Check workspaces
+        run: npm run lint --workspaces && npm run lint
