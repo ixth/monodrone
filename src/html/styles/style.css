@@ -13,6 +13,6 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    background: #000 url('space.jpg') center no-repeat;
+    background: #000 url('space.svg') center no-repeat;
     background-size: cover;
 }
