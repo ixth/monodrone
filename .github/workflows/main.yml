@@ -6,7 +6,7 @@ on:
       - main
 
 jobs:
-  build-and-deploy:
+  build:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout 🛎️
@@ -19,7 +19,7 @@ jobs:
         run: npm ci
 
       - name: Build 🏗
-        run: npm run build
+        run: npm run build:packages && npm run build
 
       - name: Setup Pages
         uses: actions/configure-pages@v2
@@ -29,6 +29,14 @@ jobs:
         with:
           path: 'dist'
 
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+
+    permissions:
+      pages: write
+      id-token: write
+
+    steps:
       - name: Deploy to GitHub Pages
-        id: deployment
         uses: actions/deploy-pages@v1

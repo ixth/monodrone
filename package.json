@@ -56,6 +56,7 @@
   "scripts": {
     "start": "webpack serve --config webpack.dev.js",
     "build": "webpack --config webpack.prod.js",
+    "build:packages": "npm run build --workspaces",
     "build:stats": "webpack --config webpack.prod.js --progress --profile --json > stats.json",
     "postinstall": "if [ -d .git ]; then git config core.hooksPath ./githooks; fi",
     "lint": "eslint 'src/**/*.{ts,tsx}'",

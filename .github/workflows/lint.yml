@@ -20,7 +20,7 @@ jobs:
         run: npm ci
 
       - name: Install
-        run: npm run build --workspaces
+        run: npm run build:packages
 
       - name: Check workspaces
-        run: npm run lint --workspaces && npm run lint
+        run: npm run lint:packages && npm run lint
