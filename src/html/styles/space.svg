@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1900 1000">
+    <filter id="cloud-filter" filterUnits="userSpaceOnUse">
+        <feFlood result="background" flood-color="purple" />
+        <feTurbulence type="fractalNoise" baseFrequency="0.005" />
+        <feDisplacementMap in="background" result="baseLayer" scale="6000" />
+        <feGaussianBlur in="baseLayer" result="blurred" stdDeviation="100" />
+        <feTurbulence
+            in="blurred"
+            result="clouds"
+            type="fractalNoise"
+            baseFrequency="0.01"
+            numOctaves="8"
+            seed="633"
+        />
+        <feDisplacementMap in="blurred" result="clouds" scale="200" />
+        <feTurbulence baseFrequency="0.1" />
+        <feColorMatrix
+            result="stars"
+            values="0 0 0 7 -4
+                    0 0 0 7 -4
+                    0 0 0 7 -4
+                    0 0 0 0 0.5"
+        />
+        <feMerge>
+            <feMergeNode in="clouds" />
+            <feMergeNode in="stars" />
+        </feMerge>
+    </filter>
+    <use filter="url(#cloud-filter)" />
+</svg>
