@@ -28,13 +28,13 @@ const Knob: FC<PropTypes> = memo(({ value = 0, spread = 280 / 360, onChange }) =
     const [isDown, setIsDown] = useState(false);
 
     const onMousedown = useCallback<React.MouseEventHandler>((e) => {
-        document.body.style.cursor = '-webkit-grabbing';
+        document.body.style.setProperty('cursor', '-webkit-grabbing');
         prevEventRef.current = e.nativeEvent;
         setIsDown(true);
     }, []);
 
     const onMouseUp = useCallback(() => {
-        document.body.style.cursor = '';
+        document.body.style.removeProperty('cursor');
         prevEventRef.current = undefined;
         setIsDown(false);
     }, []);
