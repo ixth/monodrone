@@ -1,14 +1,9 @@
 .knob {
-    position: relative;
+    --knob-size: 26px;
+    width: var(--knob-size);
+    height: var(--knob-size);
+    display: inline-block;
+    border-radius: 50%;
+    overflow: hidden;
+    cursor: pointer;
 }
-
-    .knob__handle {
-        --knob-size: 26px;
-        display: block;
-        width: var(--knob-size);
-        height: var(--knob-size);
-        background: url('knob.svg');
-        border-radius: 50%;
-        cursor: pointer;
-        pointer-events: none;
-    }

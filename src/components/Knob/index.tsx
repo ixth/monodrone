@@ -58,15 +58,46 @@ const Knob: FC<PropTypes> = memo(({ value = 0, spread = 280 / 360, onChange }) =
     useEventListener('mouseup', onMouseUp, window);
     useEventListener('mousemove', onMouseMove, window);
 
-    const style = {
-        transform: `rotate(${(1 - spread) / 2}turn) rotate(${value * spread}turn)`,
-    };
-
     return (
-        // eslint-disable-next-line jsx-a11y/no-static-element-interactions
-        <span className="knob" onMouseDown={onMousedown}>
-            <span className="knob__handle" style={style} />
-        </span>
+        <svg viewBox="-50 -50 100 100" className="knob" onMouseDown={onMousedown}>
+            <defs>
+                <radialGradient id="gradient" r="1" cx=".5" cy="0" fx=".5" fy="0">
+                    <stop offset="0%" stop-color="#666" />
+                    <stop offset="100%" stop-color="#fff" />
+                </radialGradient>
+
+                <g id="mask-image">
+                    <circle r="45" fill="#222" stroke="url(#gradient)" stroke-width="10" />
+                    <circle
+                        r="48"
+                        fill="none"
+                        stroke="#000"
+                        stroke-width="5"
+                        stroke-dasharray="3 10"
+                    />
+                    <path d="M0 50v-35" stroke="black" stroke-width="12" />
+                </g>
+
+                <mask
+                    id="mask"
+                    maskUnits="userSpaceOnUse"
+                    x="-50%"
+                    y="-50%"
+                    width="100%"
+                    height="100%"
+                >
+                    <use href="#mask-image" />
+                </mask>
+            </defs>
+
+            <circle
+                r="50"
+                fill="rgba(127,127,127,.5)"
+                stroke-width="10"
+                transform={`rotate(${360 * ((1 - spread) / 2 + value * spread)})`}
+                mask="url(#mask)"
+            />
+        </svg>
     );
 });
 
