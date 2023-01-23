@@ -9,6 +9,8 @@ export interface PropTypes {
     onChange?: (e: { value: number }) => void;
 }
 
+const clamp = (val: number, min: number, max: number) => Math.max(min, Math.min(val, max));
+
 const modAngle = (angle: number): number => {
     const absoluteAngle = Math.abs(angle);
     return absoluteAngle > Math.PI ? 2 * Math.PI - absoluteAngle : angle;
@@ -41,7 +43,7 @@ const Knob: FC<PropTypes> = memo(({ value = 0, spread = 280 / 360, onChange }) =
         (e: MouseEvent) => {
             if (isDown) {
                 onChange?.({
-                    value: Math.clamp(
+                    value: clamp(
                         value + getAngleDelta(e, prevEventRef.current) / (spread * 2 * Math.PI),
                         0,
                         1
