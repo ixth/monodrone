@@ -4,6 +4,7 @@ module.exports = {
         '@ixth/eslint-config-base',
         '@ixth/eslint-config-react/tsx',
         '@ixth/eslint-config-typescript',
+        'plugin:storybook/recommended',
     ],
     overrides: [
         {
