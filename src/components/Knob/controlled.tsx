@@ -1,3 +1,4 @@
+import cn from 'clsx';
 import React, { FC, memo, useCallback, useRef } from 'react';
 import useEventListener from '@use-it/event-listener';
 import { clamp } from '../../utils';
@@ -5,15 +6,25 @@ import { clamp } from '../../utils';
 import './styles/knob.css';
 
 export interface PropTypes {
+    className?: string;
     value?: number;
     spread?: number;
     step?: number;
     sliderSize?: number;
+    led?: boolean;
     onChange?: (e: { value: number }) => void;
 }
 
 const Knob: FC<PropTypes> = memo(
-    ({ value = 0, spread = 280 / 360, step = 1 / 10, sliderSize = 200, onChange }) => {
+    ({
+        className,
+        value = 0,
+        spread = 280 / 360,
+        step = 1 / 10,
+        sliderSize = 200,
+        led,
+        onChange,
+    }) => {
         const prevEventRef = useRef<MouseEvent>();
         const prevValueRef = useRef<number>(value);
 
@@ -75,7 +86,7 @@ const Knob: FC<PropTypes> = memo(
 
         return (
             <div
-                className="knob"
+                className={cn('knob', className, { knob_led: led })}
                 role="slider"
                 tabIndex={0}
                 onKeyDown={onInput}
@@ -96,7 +107,7 @@ const Knob: FC<PropTypes> = memo(
                                 fill="none"
                                 stroke="#000"
                                 strokeWidth="5"
-                                strokeDasharray="3 10"
+                                strokeDasharray="5"
                             />
                             <path d="M0 50v-35" stroke="black" strokeWidth="12" />
                         </g>
