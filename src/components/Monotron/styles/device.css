@@ -14,13 +14,20 @@
     user-select: none;
 }
 
-    .device__blocks {
+    .device__controls {
         position: relative;
         display: flex;
-        padding: 140px 25px 10px 35px;
+        align-items: center;
+        justify-content: space-between;
+        width: 512px;
+        padding: 140px 44px 10px 35px;
         background: url('bg.svg') left bottom no-repeat,
-                    url('grid.svg') 53px 60px no-repeat;
+                    url('grid.svg') 52px 60px no-repeat;
         background-size: 100%, auto;
+    }
+
+    .device__mode {
+        margin-right: 26px;
     }
 
     .device__logo {

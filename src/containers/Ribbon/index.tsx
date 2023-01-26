@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 
 import Ribbon from 'components/Ribbon';
 import { setOscFrequency, setOscGain } from 'reducers/osc';
-import { clamp } from 'utils';
+import { clamp } from '../../utils';
 
 import { getFrequency } from './utils';
 
