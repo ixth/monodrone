@@ -1,9 +1,15 @@
 .knob {
-    --knob-size: 26px;
-    width: var(--knob-size);
-    height: var(--knob-size);
     display: inline-block;
-    border-radius: 50%;
-    overflow: hidden;
-    cursor: pointer;
+    position: relative;
 }
+
+    .knob__handle {
+        --knob-size: 26px;
+        display: inline-block;
+        vertical-align: bottom;
+        width: var(--knob-size);
+        height: var(--knob-size);
+        border-radius: 50%;
+        cursor: pointer;
+        pointer-events: none;
+    }

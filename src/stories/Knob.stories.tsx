@@ -1,6 +1,6 @@
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 
-import Knob from '../components/Knob';
+import Knob from '../components/Knob/uncontrolled';
 
 export default {
     title: 'Knob',
@@ -23,6 +23,6 @@ const Template: ComponentStory<typeof Knob> = (args) => <Knob {...args} />;
 
 export const Primary = Template.bind({});
 Primary.args = {
-    value: 0,
+    initialValue: 0,
     spread: 1 / 2,
 };
