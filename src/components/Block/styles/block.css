@@ -1,9 +1,8 @@
 .block {
     --param-width: 66px;
-    --param-gap: 17px;
     --bevel-width: 3px;
     display: inline-block;
-    margin: 0 var(--param-gap) 0 0;
+    margin: 0;
     padding: 0;
     border: 0;
 }
@@ -42,9 +41,8 @@
 
     .block__param {
         min-width: var(--param-width);
-        margin-right: var(--param-gap);
     }
 
-    .block__param:last-child {
-        margin-right: 0;
+    .block__param + .block__param {
+        margin-left: 21px;
     }

@@ -39,39 +39,49 @@ const Monotron: VFC<PropTypes> = ({
     feedback,
     onFeedbackChange,
 }) => (
-    <div className="device">
-        <div className="device__blocks">
-            <AudioContainer />
-            <MidiContainer />
-            <Mode value={mode} onChange={onModeChange} />
-            <Block title="LFO">
-                <Param title="Rate" led>
-                    <Knob value={frequency} onChange={onFrequencyChange} />
-                </Param>
-                <Param title="Int">
-                    <Knob value={intensity} onChange={onIntensityChange} />
-                </Param>
-            </Block>
-            <Block title="VCF">
-                <Param title="Cutoff">
-                    <Knob value={cutoff} onChange={onCutoffChange} />
-                </Param>
-            </Block>
-            <Block title="Delay">
-                <Param title="Time">
-                    <Knob value={delayTime} onChange={onDelayTimeChange} />
-                </Param>
-                <Param title="Feedback">
-                    <Knob value={feedback} onChange={onFeedbackChange} />
-                </Param>
-            </Block>
-        </div>
-        <div className="device__keyboard">
-            <div className="device__keyboard-content">
-                <RibbonContainer />
+    <>
+        <AudioContainer />
+        <MidiContainer />
+        <div className="device">
+            <div className="device__controls">
+                <div className="device__mode">
+                    <Mode value={mode} onChange={onModeChange} />
+                </div>
+                <div className="device__block">
+                    <Block title="LFO">
+                        <Param title="Rate" led>
+                            <Knob value={frequency} onChange={onFrequencyChange} />
+                        </Param>
+                        <Param title="Int">
+                            <Knob value={intensity} onChange={onIntensityChange} />
+                        </Param>
+                    </Block>
+                </div>
+                <div className="device__block">
+                    <Block title="VCF">
+                        <Param title="Cutoff">
+                            <Knob value={cutoff} onChange={onCutoffChange} />
+                        </Param>
+                    </Block>
+                </div>
+                <div className="device__block">
+                    <Block title="Delay">
+                        <Param title="Time">
+                            <Knob value={delayTime} onChange={onDelayTimeChange} />
+                        </Param>
+                        <Param title="Feedback">
+                            <Knob value={feedback} onChange={onFeedbackChange} />
+                        </Param>
+                    </Block>
+                </div>
+            </div>
+            <div className="device__keyboard">
+                <div className="device__keyboard-content">
+                    <RibbonContainer />
+                </div>
             </div>
         </div>
-    </div>
+    </>
 );
 
 export default Monotron;
