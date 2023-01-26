@@ -12,7 +12,7 @@ const Block: VFC<PropTypes> = memo(({ title, children }) => (
         <legend className="block__title">{title}</legend>
         <div className="block__params">
             {Children.map(children, (child) => (
-                <legend className="block__param">{child}</legend>
+                <label className="block__param">{child}</label>
             ))}
         </div>
     </fieldset>
