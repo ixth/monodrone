@@ -4,7 +4,7 @@ import Position from './position';
 
 import './styles/switch.css';
 
-interface PropTypes<T> {
+export interface PropTypes<T> {
     value: T;
     onChange?: (value: T) => void;
 }

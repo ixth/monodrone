@@ -1,13 +1,14 @@
 .knob {
+    display: inline-block;
     position: relative;
 }
 
     .knob__handle {
         --knob-size: 26px;
-        display: block;
+        display: inline-block;
+        vertical-align: bottom;
         width: var(--knob-size);
         height: var(--knob-size);
-        background: url('knob.svg');
         border-radius: 50%;
         cursor: pointer;
         pointer-events: none;

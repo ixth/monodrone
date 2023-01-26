@@ -3,11 +3,12 @@ import { useDispatch } from 'react-redux';
 
 import Ribbon from 'components/Ribbon';
 import { setOscFrequency, setOscGain } from 'reducers/osc';
+import { clamp } from 'utils';
 
 import { getFrequency } from './utils';
 
 const getRatio = (e: MouseEvent) =>
-    Math.clamp(e.offsetX / (e.currentTarget as HTMLElement).offsetWidth, 0, 1);
+    clamp(e.offsetX / (e.currentTarget as HTMLElement).offsetWidth, 0, 1);
 
 const RibbonContainer: VFC = () => {
     const dispatch = useDispatch();

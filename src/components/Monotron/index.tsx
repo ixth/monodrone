@@ -1,7 +1,7 @@
 import { VFC } from 'react';
 
 import Block from 'components/Block';
-import Knob from 'components/Knob';
+import Knob from 'components/Knob/controlled';
 import Mode from 'components/Mode';
 import Param from 'components/Param';
 import AudioContainer from 'containers/Audio';
