@@ -1,17 +1,16 @@
 import { VFC } from 'react';
 
-import Block from 'components/Block';
+import Fieldset, { Control } from 'components/Fieldset';
 import Knob from 'components/Knob/controlled';
+import Label from 'components/Label';
+import Legend from 'components/Legend';
 import Mode from 'components/Mode';
-import Param from 'components/Param';
+
 import AudioContainer from 'containers/Audio';
 import MidiContainer from 'containers/Midi';
 import RibbonContainer from 'containers/Ribbon';
 
 import './styles/device.css';
-import Fieldset, { Control } from 'components/Fieldset';
-import Legend from 'components/Legend';
-import Label from 'components/Label';
 
 interface PropTypes {
     mode: 'sawtooth' | 'square' | 'standby';
