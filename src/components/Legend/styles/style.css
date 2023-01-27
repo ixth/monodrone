@@ -1,0 +1,30 @@
+.legend_wide {
+    width: 100%;
+}
+
+.legend {
+    --bevel-width: 3px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 0 1px;
+    text-transform: uppercase;
+    font: normal 14px var(--display-typeface-stack);
+}
+
+    .legend::before,
+    .legend::after {
+        content: '';
+        flex-grow: 1;
+        height: 0px;
+        border: calc(var(--bevel-width) / 2) solid orange;
+        border-radius: calc(var(--bevel-width) / 2);
+    }
+
+    .legend::before {
+        margin-right: .25em;
+    }
+
+    .legend::after {
+        margin-left: .25em;
+    }

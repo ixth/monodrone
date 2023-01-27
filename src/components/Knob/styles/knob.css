@@ -1,6 +1,9 @@
 .knob {
     display: inline-block;
     position: relative;
+    padding: 3px;
+    background: #111;
+    border-radius: 50%;
 }
 
     .knob__handle {
@@ -12,4 +15,9 @@
         border-radius: 50%;
         cursor: pointer;
         pointer-events: none;
+    }
+
+    .knob_led .knob__handle {
+        background: hsl(65, 100%, 70%);
+        box-shadow: 0 0 3px 0px hsl(65, 100%, 70%);
     }

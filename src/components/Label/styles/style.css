@@ -1,0 +1,16 @@
+.label {
+    box-sizing: border-box;
+    margin-top: 7px;
+    padding: 0 .5em;
+    border-radius: 10px;
+    background: orange;
+    color: var(--bg-color);
+    font: normal 17px/21px var(--display-typeface-stack);
+    text-transform: uppercase;
+    text-align: center;
+}
+
+.label_wide {
+    display: block;
+    width: 100%;
+}

@@ -14,9 +14,6 @@ export default {
         },
         onChange: { action: 'changed' },
     },
-    parameters: {
-        layout: 'centered',
-    },
 } as ComponentMeta<typeof Knob>;
 
 const Template: ComponentStory<typeof Knob> = (args) => <Knob {...args} />;

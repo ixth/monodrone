@@ -9,6 +9,9 @@ import MidiContainer from 'containers/Midi';
 import RibbonContainer from 'containers/Ribbon';
 
 import './styles/device.css';
+import Fieldset, { Control } from 'components/Fieldset';
+import Legend from 'components/Legend';
+import Label from 'components/Label';
 
 interface PropTypes {
     mode: 'sawtooth' | 'square' | 'standby';
@@ -48,31 +51,39 @@ const Monotron: VFC<PropTypes> = ({
                     <Mode value={mode} onChange={onModeChange} />
                 </div>
                 <div className="device__block">
-                    <Block title="LFO">
-                        <Param title="Rate" led>
-                            <Knob value={frequency} onChange={onFrequencyChange} />
-                        </Param>
-                        <Param title="Int">
+                    <Fieldset>
+                        <Legend wide>LFO</Legend>
+                        <Control>
+                            <Knob value={frequency} onChange={onFrequencyChange} led />
+                            <Label wide>Rate</Label>
+                        </Control>
+                        <Control>
                             <Knob value={intensity} onChange={onIntensityChange} />
-                        </Param>
-                    </Block>
+                            <Label wide>Int</Label>
+                        </Control>
+                    </Fieldset>
                 </div>
                 <div className="device__block">
-                    <Block title="VCF">
-                        <Param title="Cutoff">
+                    <Fieldset>
+                        <Legend wide>VCF</Legend>
+                        <Control>
                             <Knob value={cutoff} onChange={onCutoffChange} />
-                        </Param>
-                    </Block>
+                            <Label wide>Cutoff</Label>
+                        </Control>
+                    </Fieldset>
                 </div>
                 <div className="device__block">
-                    <Block title="Delay">
-                        <Param title="Time">
+                    <Fieldset>
+                        <Legend wide>Delay</Legend>
+                        <Control>
                             <Knob value={delayTime} onChange={onDelayTimeChange} />
-                        </Param>
-                        <Param title="Feedback">
+                            <Label wide>Time</Label>
+                        </Control>
+                        <Control>
                             <Knob value={feedback} onChange={onFeedbackChange} />
-                        </Param>
-                    </Block>
+                            <Label wide>Feedback</Label>
+                        </Control>
+                    </Fieldset>
                 </div>
             </div>
             <div className="device__keyboard">
