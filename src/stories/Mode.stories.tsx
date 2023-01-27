@@ -12,9 +12,6 @@ export default {
         },
         onChange: { action: 'changed' },
     },
-    parameters: {
-        layout: 'centered',
-    },
 } as ComponentMeta<typeof Mode>;
 
 const Template: ComponentStory<typeof Mode> = (args) => <Mode {...args} />;
